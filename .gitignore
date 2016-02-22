@@ -1,0 +1,9 @@
+*.obj
+*.exe
+bin
+obj
+bin/*
+obj/*
+*.suo
+~*
+%*

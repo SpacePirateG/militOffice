@@ -7,7 +7,9 @@ using MySql.Data.MySqlClient;
 
 namespace militOfficeLib
 {
-    public class Class1
+    public class Storage
     {
+            public Storage();
+
     }
 }

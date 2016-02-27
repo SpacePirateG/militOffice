@@ -8,12 +8,25 @@ namespace militOfficeLib
 {
     enum Permission
     {
-        Admin,
-        Chief,
-        AssistChief,
-        Paramedic,
-        TechnicalStaff
+        Paramedic = 0,
+        TechnicalStaff = 1,     
+        AssistChief = 2,
+        Chief = 3,
+        Admin = 4
     }
+
+    enum Command
+    {
+        recruitsRead,
+        recruitsWrite,
+        recruitsReadWrite,
+        userWrite,
+        orderRead,
+        orderWrite,
+        orderReadWrite
+    }
+
+
 
     class User
     {

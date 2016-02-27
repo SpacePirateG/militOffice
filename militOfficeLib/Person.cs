@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace militOfficeLib
 {
-    struct Person
+    class Person
     {
+        public Int32 id;
         public String name;
         public String surname;
         public DateTime birthday;

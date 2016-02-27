@@ -12,6 +12,7 @@ namespace militOfficeLib
         public String conviction;
         public DateTime postponement;
         public Recruit(
+            Int32 id,
             String name,
             String surname,
             DateTime birthday,
@@ -23,6 +24,7 @@ namespace militOfficeLib
             DateTime postponement
             )
             : base(
+               id,
                name,
                surname,
                birthday,

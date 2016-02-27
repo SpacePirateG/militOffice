@@ -16,6 +16,7 @@ namespace militOfficeLib
         public String phoneNumber;
         public String address;
         public Person(
+            Int32 id,
             String name,
             String surname,
             DateTime birthday,
@@ -24,6 +25,7 @@ namespace militOfficeLib
             String address
             )
         {
+            this.id = id;
             this.name = name;
             this.surname = surname;
             this.birthday = birthday;

@@ -47,6 +47,7 @@
     <Compile Include="Model\Order.cs" />
     <Compile Include="Model\Person.cs" />
     <Compile Include="Model\Recruit.cs" />
+    <Compile Include="Model\User.cs" />
     <Compile Include="Storage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

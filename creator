@@ -1,0 +1,22 @@
+DROP DATABASE IF EXISTS militdb;
+CREATE DATABASE IF NOT EXISTS militdb;
+use militdb;
+source D:/git_projects/militOffice/militbd.sql;
+
+
+INSERT INTO `recruits` VALUES (1, 'Сергей', 'Морозов', 'Иванов', '1998-1-1', 'выдан в махачкале', '8-800-555-35-35', 'ул пушкина', 'А', 'нет', 'нет');
+
+INSERT INTO `recruits`VALUES (2, 'Иван', 'Колобков', 'Иванов', '1991-5-10', 'выдан в волгограде', '8-800-555-35-35', 'ул пушкина', 'А', 'нет', 'нет');
+
+INSERT INTO `recruits`VALUES (3, 'Сергей', 'Морозов', 'Иванов', '1993-12-10', 'выдан в ростове', '8-800-555-35-35', 'ул пупкина', 'А', 'нет', 'нет');
+
+
+
+INSERT INTO `orders` VALUES (1, '2016-12-31', 'явиться туда то туда то');
+INSERT INTO `orders` VALUES (2, '2011-9-4', 'явиться туда то туда то');
+INSERT INTO `orders` VALUES (3, '2017-2-2', 'явиться туда то туда то');
+
+
+
+INSERT INTO `users`  VALUES ('admin', 'admin', 'Админ', 'Админ', 'Админов', 'admin');
+INSERT INTO `users`  VALUES ('user', 'user', 'Пользователь', 'Пользователь', 'Пользователев', 'user');

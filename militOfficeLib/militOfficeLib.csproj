@@ -42,6 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin.cs" />
+    <Compile Include="Command.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Recruit.cs" />
     <Compile Include="Storage.cs" />

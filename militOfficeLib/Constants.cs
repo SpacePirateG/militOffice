@@ -8,10 +8,10 @@ namespace militOfficeLib
 {
     class Constants
     {
-       public static string serverName = ;
-       public static string userName = ;
-       public static string dbName = ;
-       public static string port = ;
-       public static string password = ;
+       public static string serverName = "localhost";
+       public static string userName = "root";
+       public static string dbName = "militDB";
+       public static string port = "19190";
+       public static string password = "root";
     }
 }

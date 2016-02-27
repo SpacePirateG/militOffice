@@ -44,8 +44,9 @@
   <ItemGroup>
     <Compile Include="Admin.cs" />
     <Compile Include="Command.cs" />
-    <Compile Include="Person.cs" />
-    <Compile Include="Recruit.cs" />
+    <Compile Include="Model\Order.cs" />
+    <Compile Include="Model\Person.cs" />
+    <Compile Include="Model\Recruit.cs" />
     <Compile Include="Storage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

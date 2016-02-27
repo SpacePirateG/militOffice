@@ -10,7 +10,7 @@ namespace militOfficeLib
     {
         public String category;
         public String conviction;
-
+        public DateTime postponement;
         public Recruit(
             String name,
             String surname,
@@ -19,7 +19,8 @@ namespace militOfficeLib
             String phoneNumber,
             String address,
             String category,
-
+            String conviction,
+            DateTime postponement
             )
             : base(
                name,
@@ -30,7 +31,9 @@ namespace militOfficeLib
                address
               )
         {
-
+            this.category = category;
+            this.conviction = conviction;
+            this.postponement = postponement;
         }
     }
 }

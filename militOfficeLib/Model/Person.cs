@@ -11,6 +11,7 @@ namespace militOfficeLib
         public Int32 id;
         public String name;
         public String surname;
+        public String patronymic;
         public DateTime birthday;
         public String pasport;
         public String phoneNumber;
@@ -19,6 +20,7 @@ namespace militOfficeLib
             Int32 id,
             String name,
             String surname,
+            String patronymic,
             DateTime birthday,
             String pasport,
             String phoneNumber,
@@ -28,6 +30,7 @@ namespace militOfficeLib
             this.id = id;
             this.name = name;
             this.surname = surname;
+            this.patronymic = patronymic;
             this.birthday = birthday;
             this.pasport = pasport;
             this.phoneNumber = phoneNumber;

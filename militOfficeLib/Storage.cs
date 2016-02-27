@@ -58,7 +58,7 @@ namespace militOfficeLib
         {
         }
 
-        public void addRecruit(Int32 Recruit)
+        public void addRecruit(Recruit recruit)
         {
         }
 
@@ -81,7 +81,13 @@ namespace militOfficeLib
         }
 
         //=========Users==========
+        public User getUserBylogin(string login)
+        {
+        }
 
+        public void addUser(User user)
+        {
+        }
 
         
 

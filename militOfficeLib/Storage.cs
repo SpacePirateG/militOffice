@@ -40,22 +40,27 @@ namespace militOfficeLib
         //========Recruits=======
         public IEnumerable<Recruit> getAllRecruits()
         {
+            return null;
         }
 
         public IEnumerable<Recruit> getRecruitsByCategory(String category)
         {
+            return null;
         }
 
         public IEnumerable<Recruit> getRecruitsByConviction(String conviction)
         {
+            return null;
         }
 
         public IEnumerable<Recruit> getRecruitsByPostponement(String postponement)
         {
+            return null;
         }
 
         public Recruit getRecruitById(Int32 id)
         {
+            return null;
         }
 
         public void addRecruit(Recruit recruit)
@@ -66,14 +71,17 @@ namespace militOfficeLib
 
         public IEnumerable<Order> getAllOrders()
         {
+            return null;
         }
 
         public IEnumerable<Order> getAllOrdersByDate(DateTime date)
         {
+            return null;
         }
 
         public Order getOrderByRecruitId(Int32 id)
         {
+            return null;
         }
 
         public void addOrder(Order order)
@@ -83,6 +91,7 @@ namespace militOfficeLib
         //=========Users==========
         public User getUserBylogin(string login)
         {
+            return null;
         }
 
         public void addUser(User user)

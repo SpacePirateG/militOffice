@@ -15,15 +15,15 @@ namespace militOfficeLib
         Admin = 4
     }
 
-    enum Command
+    [Flags]
+    public enum Commands
     {
-        recruitsRead,
-        recruitsWrite,
-        recruitsReadWrite,
-        userWrite,
-        orderRead,
-        orderWrite,
-        orderReadWrite
+        none = 0x0,
+        recruitsRead = 0x1,
+        recruitsWrite = 0x2,
+        userWrite = 0x4,
+        orderRead = 0x8,
+        orderWrite = 0x10
     }
 
 

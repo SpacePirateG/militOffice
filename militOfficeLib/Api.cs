@@ -115,7 +115,7 @@ namespace militOfficeLib
 
         public void addUser(User user)
         {
-            if (user.permission >= Permission.TechnicalStaff)
+            if (getAvailableCommands().HasFlag(Commands.userWrite))
                 storage.addUser(user);
             else
                 throw new PermissionDeniedException();

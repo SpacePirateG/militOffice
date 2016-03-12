@@ -48,7 +48,7 @@ namespace militOfficeLib
 			if (writeAccess)
 				storage.addOrder(order);
 			else
-				throw new PermissionDeniedException("segodnya ne tvoy denb");
+				throw new PermissionDeniedException("today is not your day");
 		}
 	}
 }

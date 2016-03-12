@@ -23,7 +23,7 @@ namespace militOfficeLib
 			if (readAccess)
 				return storage.getUserBylogin(login);
 			else
-				throw new PermissionDeniedException();
+				throw new PermissionDeniedException("today is not your day");
 		}
 
 		public IEnumerable<User> getAllUsers()
@@ -31,7 +31,7 @@ namespace militOfficeLib
 			if (readAccess)
 				return storage.getAllUsers();
 			else
-				throw new PermissionDeniedException();
+				throw new PermissionDeniedException("today is not your day");
 		}
 
 		public void addUser(User user)
@@ -39,7 +39,7 @@ namespace militOfficeLib
 			if (writeAccess)
 				storage.addUser(user);
 			else
-				throw new PermissionDeniedException();
+				throw new PermissionDeniedException("today is not your day");
 		}
 
 	}

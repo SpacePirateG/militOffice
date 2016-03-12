@@ -6,120 +6,64 @@ using System.Threading.Tasks;
 
 namespace militOfficeLib
 {
-    class Api
+    public class MilitTerminal
     {
-        public User user;
-        public Storage storage;
-        public Api()
+        private User user;
+        private Storage storage;
+		private OrderTerminal orderTerminal;
+		private RecruitTerminal recruitTerminal;
+		
+        public MilitTerminal()
         {
-            storage = new Storage(
-                Constants.serverName,
-                Constants.userName,
-                Constants.dbName,
-                Constants.port,
-                Constants.password
-            );
+			storage = new Storage(
+				Constants.serverName,
+				Constants.userName,
+				Constants.dbName,
+				Constants.port,
+				Constants.password
+			);
         }
-        public bool autentificate(string login, string password)
+		
+		public OrderTerminal OrderTerminal{
+			get{
+				if (orderTerminal == null)
+					orderTerminal = new OrderTerminal(storage, availableCommands.HasFlag(Commands.orderWrite), availableCommands.HasFlag(Commands.orderRead));
+				return orderTerminal;
+			}
+		}
+		
+		public RecruitTerminal RecruitTerminal{
+			get{
+				if (recruitTerminal == null && availableCommands.HasFlag(Commands.recruitsRead))
+					recruitTerminal = new RecruitTerminal(storage, availableCommands.HasFlag(Commands.recruitsWrite));
+				return recruitTerminal;
+			}
+		}
+
+		public void authentication(string login, string password)
         {
-            user = storage.getUserBylogin(login);
-
-            return user != null && password == user.password;
-        }
-
-        public Commands getAvailableCommands()
-        {
-            return Constants.availableCommands[user.permission];
-        }
-
-
-        public IEnumerable<Recruit> getAllRecruits()
-        {
-            if (getAvailableCommands().HasFlag(Commands.recruitsRead))
-                return storage.getAllRecruits();
-            else
-                throw new PermissionDeniedException();
-        }
-
-        public IEnumerable<Recruit> getRecruitsByCategory(string category)
-        {
-            if (getAvailableCommands().HasFlag(Commands.recruitsRead))
-                return storage.getRecruitsByCategory(category);
-            else
-                throw new PermissionDeniedException();
-        }
-
-        public IEnumerable<Recruit> getRecruitsByConviction(String conviction)
-        {
-            if (getAvailableCommands().HasFlag(Commands.recruitsRead))
-                return storage.getRecruitsByConviction(conviction);
-            else
-                throw new PermissionDeniedException();
+            User userByLogin = storage.getUserBylogin(login);
+			if (userByLogin == null || password != user.password)
+				throw  new System.Security.Authentication.AuthenticationException("retry authentication");
+			user = userByLogin;
         }
 
-        public IEnumerable<Recruit> getRecruitsByPostponement(String postponement)
+		public bool isAuthenticated()
+		{
+			return user != null;
+		}
+
+        public Commands availableCommands
         {
-            if (getAvailableCommands().HasFlag(Commands.recruitsRead))
-                return storage.getRecruitsByPostponement(postponement);
-            else
-                throw new PermissionDeniedException();
+			get{
+				if (!isAuthenticated())
+					return Commands.none;
+
+				return Constants.availableCommands[user.permission];
+			}
         }
 
-        public Recruit getRecruitById(Int32 id)
-        {
-            if (getAvailableCommands().HasFlag(Commands.recruitsRead))
-                return storage.getRecruitById(id);
-            else
-                throw new PermissionDeniedException();
-        }
-
-        public void addRecruit(Recruit recruit)
-        {
-            if (getAvailableCommands().HasFlag(Commands.recruitsWrite))
-                storage.addRecruit(recruit);
-            else
-                throw new PermissionDeniedException();
-        }
-
-        public IEnumerable<Order> getAllOrders()
-        {
-            if (getAvailableCommands().HasFlag(Commands.orderRead))
-                return storage.getAllOrders();
-            else
-                throw new PermissionDeniedException();
-        }
-
-        public IEnumerable<Order> getAllOrdersByDate(DateTime date)
-        {
-            if (getAvailableCommands().HasFlag(Commands.orderRead))
-                return storage.getAllOrdersByDate(date);
-            else
-                throw new PermissionDeniedException();
-        }
-
-        public Order getOrderByRecruitId(Int32 id)
-        {
-            if (getAvailableCommands().HasFlag(Commands.orderRead))
-                return storage.getOrderByRecruitId(id);
-            else
-                throw new PermissionDeniedException();
-        }
-
-        public void addOrder(Order order)
-        {
-            if (getAvailableCommands().HasFlag(Commands.orderWrite))
-                storage.addOrder(order);
-            else
-                throw new PermissionDeniedException();
-        }
-
-        public void addUser(User user)
-        {
-            if (getAvailableCommands().HasFlag(Commands.userWrite))
-                storage.addUser(user);
-            else
-                throw new PermissionDeniedException();
-        }
+        
 
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace militOfficeLib
 {
-    class Recruit : Person
+    public class Recruit : Person
     {
         public String category;
         public String conviction;

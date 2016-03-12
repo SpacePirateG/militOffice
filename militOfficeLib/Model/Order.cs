@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace militOfficeLib
 {
-    class Order
+    public class Order
     {
         public Int32 id;
         public Recruit recruit;

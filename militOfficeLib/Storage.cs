@@ -94,6 +94,11 @@ namespace militOfficeLib
             return null;
         }
 
+		public IEnumerable<User> getAllUsers()
+		{
+			return null;
+		}
+
         public void addUser(User user)
         {
         }

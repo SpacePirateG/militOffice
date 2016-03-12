@@ -49,6 +49,9 @@
     <Compile Include="Model\Person.cs" />
     <Compile Include="Model\Recruit.cs" />
     <Compile Include="Model\User.cs" />
+    <Compile Include="UserTerminal.cs" />
+    <Compile Include="OrderTerminal.cs" />
+    <Compile Include="RecruitTerminal.cs" />
     <Compile Include="Storage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

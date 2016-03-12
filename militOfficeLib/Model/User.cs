@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace militOfficeLib
 {
-    enum Permission
+    public enum Permission
     {
         Paramedic = 0,
         TechnicalStaff = 1,     
@@ -28,10 +28,10 @@ namespace militOfficeLib
 
 
 
-    class User
+    public class User
     {
         public String login;
-        public String password;
+        internal String password;
         public String name;
         public String surname;
         public String patronymic;

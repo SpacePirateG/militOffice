@@ -12,6 +12,7 @@ namespace militOfficeLib
         private Storage storage;
 		private OrderTerminal orderTerminal;
 		private RecruitTerminal recruitTerminal;
+		private UserTerminal userTerminal;
 		
         public MilitTerminal()
         {
@@ -34,9 +35,19 @@ namespace militOfficeLib
 		
 		public RecruitTerminal RecruitTerminal{
 			get{
-				if (recruitTerminal == null && AvailableCommands.HasFlag(Commands.recruitsRead))
-					recruitTerminal = new RecruitTerminal(storage, AvailableCommands.HasFlag(Commands.recruitsWrite));
+				if (recruitTerminal == null)
+					recruitTerminal = new RecruitTerminal(storage, AvailableCommands.HasFlag(Commands.recruitsWrite), AvailableCommands.HasFlag(Commands.recruitsRead));
 				return recruitTerminal;
+			}
+		}
+
+		public UserTerminal UserTerminal
+		{
+			get
+			{
+				if (userTerminal == null)
+                    userTerminal = new UserTerminal(storage, AvailableCommands.HasFlag(Commands.userWrite), AvailableCommands.HasFlag(Commands.userRead));
+                return userTerminal;
 			}
 		}
 

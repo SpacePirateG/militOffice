@@ -21,9 +21,11 @@ namespace militOfficeLib
         none = 0x0,
         recruitsRead = 0x1,
         recruitsWrite = 0x2,
-        userWrite = 0x4,
-        orderRead = 0x8,
-        orderWrite = 0x10
+        orderRead = 0x4,
+        orderWrite = 0x8,
+		userRead = 0x10,
+		userWrite = 0x20
+
     }
 
 

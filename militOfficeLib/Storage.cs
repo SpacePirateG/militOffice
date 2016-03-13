@@ -102,8 +102,5 @@ namespace militOfficeLib
         public void AddUser(User user)
         {
         }
-
-        
-
     }
 }

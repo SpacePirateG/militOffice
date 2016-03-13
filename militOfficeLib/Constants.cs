@@ -26,6 +26,7 @@ namespace militOfficeLib
                                     Commands.orderWrite |
                                     Commands.recruitsRead |
                                     Commands.recruitsWrite |
+                                    Commands.userRead |
                                     Commands.userWrite;
 
         public static Commands ChiefCommands = Commands.orderRead |

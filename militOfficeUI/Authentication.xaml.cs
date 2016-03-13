@@ -33,7 +33,7 @@ namespace militOfficeUI
 			{
 				militTerminal.Authentication(LoginField.Text, PasswordField.Password);
 				new MainWindow(militTerminal).Show();
-				this.Hide();
+				this.Close();
 			}
 			catch (AuthenticationException)
 			{

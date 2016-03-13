@@ -72,12 +72,12 @@ namespace militOfficeLib
 
         }
 
-        public void UpdateRecruit(Recruit oldRecruit, Recruit newRecruit)
+        public void UpdateRecruit(Recruit recruit)
         {
 
         }
 
-        public void DeleteRecruit(Recruit recruit)
+        public void DeleteRecruit(Int32 id)
         {
 
         }
@@ -104,12 +104,12 @@ namespace militOfficeLib
 
         }
 
-        public void UpdateOrder(Order oldOrder, Order newOrder)
+        public void UpdateOrder(Order order)
         {
 
         }
 
-        public void DeleteOrder(Order order)
+        public void DeleteOrder(Int32 id)
         {
 
         }
@@ -131,12 +131,12 @@ namespace militOfficeLib
 
         }
 
-        public void UpdateUser(User oldUser, User newUser)
+        public void UpdateUser(User user)
         {
             
         }
 
-        public void DeleteUser(User user)
+        public void DeleteUser(Int32 id)
         {
 
         }

@@ -18,7 +18,7 @@ namespace militOfficeLib
             this.storage = storage;
         }
 
-        public User GetUserBylogin(string login)
+        public User GetBylogin(string login)
         {
             if (readAccess)
                 return storage.GetUserBylogin(login);
@@ -26,7 +26,7 @@ namespace militOfficeLib
                 throw new PermissionDeniedException("today is not your day");
         }
 
-        public IEnumerable<User> GetAllUsers()
+        public IEnumerable<User> GetAll()
         {
             if (readAccess)
                 return storage.GetAllUsers();
@@ -34,7 +34,7 @@ namespace militOfficeLib
                 throw new PermissionDeniedException("today is not your day");
         }
 
-        public void AddUser(User user)
+        public void Add(User user)
         {
             if (writeAccess)
                 storage.AddUser(user);

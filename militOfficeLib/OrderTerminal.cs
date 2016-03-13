@@ -19,7 +19,7 @@ namespace militOfficeLib
             this.storage = storage;
         }
 
-        public IEnumerable<Order> GetAllOrders()
+        public IEnumerable<Order> GetAll()
         {
             if (readAccess)
                 return storage.GetAllOrders();
@@ -27,7 +27,7 @@ namespace militOfficeLib
                 throw new PermissionDeniedException("today is not your day");
         }
 
-        public IEnumerable<Order> GetAllOrdersByDate(DateTime date)
+        public IEnumerable<Order> GetAllByDate(DateTime date)
         {
             if (readAccess)
                 return storage.GetAllOrdersByDate(date);
@@ -35,7 +35,7 @@ namespace militOfficeLib
                 throw new PermissionDeniedException("today is not your day");
         }
 
-        public Order GetOrderByRecruitId(Int32 id)
+        public Order GetByRecruitId(Int32 id)
         {
             if (readAccess)
                 return storage.GetOrderByRecruitId(id);
@@ -43,7 +43,7 @@ namespace militOfficeLib
                 throw new PermissionDeniedException("today is not your day");
         }
 
-        public void AddOrder(Order order)
+        public void Add(Order order)
         {
             if (writeAccess)
                 storage.AddOrder(order);

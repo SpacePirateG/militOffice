@@ -18,7 +18,7 @@ namespace militOfficeLib
             this.storage = storage;
         }
 
-        public IEnumerable<Recruit> GetAllRecruits()
+        public IEnumerable<Recruit> GetAll()
         {
             if (readAccess)
                 return storage.GetAllRecruits();
@@ -26,7 +26,7 @@ namespace militOfficeLib
                 throw new PermissionDeniedException("today is not your day");
         }
 
-        public IEnumerable<Recruit> GetRecruitsByCategory(string category)
+        public IEnumerable<Recruit> GetByCategory(string category)
         {
             if (readAccess)
                 return storage.GetRecruitsByCategory(category);
@@ -34,7 +34,7 @@ namespace militOfficeLib
                 throw new PermissionDeniedException("today is not your day");
         }
 
-        public IEnumerable<Recruit> GetRecruitsByConviction(String conviction)
+        public IEnumerable<Recruit> GetByConviction(String conviction)
         {
             if (readAccess)
                 return storage.GetRecruitsByConviction(conviction);
@@ -42,7 +42,7 @@ namespace militOfficeLib
                 throw new PermissionDeniedException("today is not your day");
         }
 
-        public IEnumerable<Recruit> GetRecruitsByPostponement(String postponement)
+        public IEnumerable<Recruit> GetByPostponement(String postponement)
         {
             if (readAccess)
                 return storage.GetRecruitsByPostponement(postponement);
@@ -50,7 +50,7 @@ namespace militOfficeLib
                 throw new PermissionDeniedException("today is not your day");
         }
 
-        public Recruit GetRecruitById(Int32 id)
+        public Recruit GetById(Int32 id)
         {
             if (readAccess)
                 return storage.GetRecruitById(id);
@@ -58,7 +58,7 @@ namespace militOfficeLib
                 throw new PermissionDeniedException("today is not your day");
         }
 
-        public void AddRecruit(Recruit recruit)
+        public void Add(Recruit recruit)
         {
             if (writeAccess)
                 storage.AddRecruit(recruit);

@@ -21,7 +21,6 @@ namespace militOfficeUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        //private MilitTerminal militTerminal;
         private RecruitTerminal recruitTerminal;
         private UserTerminal userTerminal;
         private OrderTerminal orderTerminal;
@@ -30,7 +29,6 @@ namespace militOfficeUI
         public MainWindow(MilitTerminal militTerminal)
         {
             InitializeComponent();
-            //this.militTerminal = militTerminal;
             this.availableCommands = militTerminal.AvailableCommands;
             
             if (availableCommands.HasFlag(Commands.userRead))

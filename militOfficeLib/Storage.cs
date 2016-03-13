@@ -22,18 +22,20 @@ namespace militOfficeLib
             connection = new MySqlConnection(connectSettings);
         }
 
-        private void Query(string sql)
+        private DataTable Query(string sql)
         {
             MySqlCommand sqlCommand = new MySqlCommand(sql, connection);
             DataTable dataTable = new DataTable();
 
             connection.Open();
-            using (MySqlDataAdapter dataAdapter = new MySqlDataAdapter(sqlCommand))
+            MySqlDataAdapter dataAdapter;
+            using (dataAdapter = new MySqlDataAdapter(sqlCommand))
             {
                 dataAdapter.Fill(dataTable);
             }
 
             connection.Close();
+            return dataTable;
         }
 
 
@@ -48,11 +50,13 @@ namespace militOfficeLib
             return null;
         }
 
+        //выборка по судимости
         public IEnumerable<Recruit> GetRecruitsByConviction(String conviction)
         {
             return null;
         }
 
+        //выборка по отсрочке
         public IEnumerable<Recruit> GetRecruitsByPostponement(String postponement)
         {
             return null;
@@ -65,6 +69,17 @@ namespace militOfficeLib
 
         public void AddRecruit(Recruit recruit)
         {
+
+        }
+
+        public void UpdateRecruit(Recruit oldRecruit, Recruit newRecruit)
+        {
+
+        }
+
+        public void DeleteRecruit(Recruit recruit)
+        {
+
         }
 
         //========Orders=======
@@ -86,9 +101,21 @@ namespace militOfficeLib
 
         public void AddOrder(Order order)
         {
+
+        }
+
+        public void UpdateOrder(Order oldOrder, Order newOrder)
+        {
+
+        }
+
+        public void DeleteOrder(Order order)
+        {
+
         }
 
         //=========Users==========
+
         public User GetUserBylogin(string login)
         {
             return null;
@@ -101,6 +128,17 @@ namespace militOfficeLib
 
         public void AddUser(User user)
         {
+
+        }
+
+        public void UpdateUser(User oldUser, User newUser)
+        {
+            
+        }
+
+        public void DeleteUser(User user)
+        {
+
         }
     }
 }

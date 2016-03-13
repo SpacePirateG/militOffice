@@ -24,7 +24,7 @@ namespace militOfficeLib
 
         private void Query(string sql)
         {
-            MySqlCommand sqlCommand = new MySqlCommand(sql, connection);           
+            MySqlCommand sqlCommand = new MySqlCommand(sql, connection);
             DataTable dataTable = new DataTable();
 
             connection.Open();
@@ -94,10 +94,10 @@ namespace militOfficeLib
             return null;
         }
 
-		public IEnumerable<User> GetAllUsers()
-		{
-			return null;
-		}
+        public IEnumerable<User> GetAllUsers()
+        {
+            return null;
+        }
 
         public void AddUser(User user)
         {

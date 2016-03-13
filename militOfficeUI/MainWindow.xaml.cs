@@ -32,29 +32,37 @@ namespace militOfficeUI
             InitializeComponent();
             //this.militTerminal = militTerminal;
             this.availableCommands = militTerminal.AvailableCommands;
-            this.recruitTerminal = militTerminal.RecruitTerminal;
-            this.orderTerminal = militTerminal.OrderTerminal;
-            this.userTerminal = militTerminal.UserTerminal;
+            
+            if (availableCommands.HasFlag(Commands.userRead))
+            {
+                this.userTerminal = militTerminal.UserTerminal;
+                CreateUserTable();
+            }
+            if (availableCommands.HasFlag(Commands.userRead))
+            {
+                this.recruitTerminal = militTerminal.RecruitTerminal;
+                CreateRecruitsTable();
 
-            CreateUserScreen();
-            CreateRecruitsScreen();
-            CreateOrdersScreen();
-
-
-
+            }
+            if (availableCommands.HasFlag(Commands.userRead))
+            {
+                this.orderTerminal = militTerminal.OrderTerminal;
+                CreateOrdersTable();
+            }
+            
         }
 
-        private void CreateRecruitsScreen()
+        private void CreateRecruitsTable()
         {
             Recruits.ItemsSource = recruitTerminal.GetAll();
         }
 
-        private void CreateOrdersScreen()
+        private void CreateOrdersTable()
         {
             Orders.ItemsSource = orderTerminal.GetAll();
         }
 
-        private void CreateUserScreen()
+        private void CreateUserTable()
         {
             Users.ItemsSource = userTerminal.GetAll();
         }

@@ -19,34 +19,34 @@ namespace militOfficeLib
 			this.storage = storage;
 		}
 
-		public IEnumerable<Order> getAllOrders()
+		public IEnumerable<Order> GetAllOrders()
 		{
 			if (readAccess)
-				return storage.getAllOrders();
+				return storage.GetAllOrders();
 			else
 				throw new PermissionDeniedException("today is not your day");
 		}
 
-		public IEnumerable<Order> getAllOrdersByDate(DateTime date)
+		public IEnumerable<Order> GetAllOrdersByDate(DateTime date)
 		{
 			if (readAccess)
-				return storage.getAllOrdersByDate(date);
+				return storage.GetAllOrdersByDate(date);
 			else
 				throw new PermissionDeniedException("today is not your day");
 		}
 
-		public Order getOrderByRecruitId(Int32 id)
+		public Order GetOrderByRecruitId(Int32 id)
 		{
 			if (readAccess)
-				return storage.getOrderByRecruitId(id);
+				return storage.GetOrderByRecruitId(id);
 			else
 				throw new PermissionDeniedException("today is not your day");
 		}
 
-		public void addOrder(Order order)
+		public void AddOrder(Order order)
 		{
 			if (writeAccess)
-				storage.addOrder(order);
+				storage.AddOrder(order);
 			else
 				throw new PermissionDeniedException("today is not your day");
 		}

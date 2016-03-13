@@ -22,7 +22,7 @@ namespace militOfficeLib
             connection = new MySqlConnection(connectSettings);
         }
 
-        private void query(string sql)
+        private void Query(string sql)
         {
             MySqlCommand sqlCommand = new MySqlCommand(sql, connection);           
             DataTable dataTable = new DataTable();
@@ -38,68 +38,68 @@ namespace militOfficeLib
 
 
         //========Recruits=======
-        public IEnumerable<Recruit> getAllRecruits()
+        public IEnumerable<Recruit> GetAllRecruits()
         {
             return null;
         }
 
-        public IEnumerable<Recruit> getRecruitsByCategory(String category)
+        public IEnumerable<Recruit> GetRecruitsByCategory(String category)
         {
             return null;
         }
 
-        public IEnumerable<Recruit> getRecruitsByConviction(String conviction)
+        public IEnumerable<Recruit> GetRecruitsByConviction(String conviction)
         {
             return null;
         }
 
-        public IEnumerable<Recruit> getRecruitsByPostponement(String postponement)
+        public IEnumerable<Recruit> GetRecruitsByPostponement(String postponement)
         {
             return null;
         }
 
-        public Recruit getRecruitById(Int32 id)
+        public Recruit GetRecruitById(Int32 id)
         {
             return null;
         }
 
-        public void addRecruit(Recruit recruit)
+        public void AddRecruit(Recruit recruit)
         {
         }
 
         //========Orders=======
 
-        public IEnumerable<Order> getAllOrders()
+        public IEnumerable<Order> GetAllOrders()
         {
             return null;
         }
 
-        public IEnumerable<Order> getAllOrdersByDate(DateTime date)
+        public IEnumerable<Order> GetAllOrdersByDate(DateTime date)
         {
             return null;
         }
 
-        public Order getOrderByRecruitId(Int32 id)
+        public Order GetOrderByRecruitId(Int32 id)
         {
             return null;
         }
 
-        public void addOrder(Order order)
+        public void AddOrder(Order order)
         {
         }
 
         //=========Users==========
-        public User getUserBylogin(string login)
+        public User GetUserBylogin(string login)
         {
             return null;
         }
 
-		public IEnumerable<User> getAllUsers()
+		public IEnumerable<User> GetAllUsers()
 		{
 			return null;
 		}
 
-        public void addUser(User user)
+        public void AddUser(User user)
         {
         }
 

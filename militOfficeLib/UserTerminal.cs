@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace militOfficeLib
 {
-	class UserTerminal
+	public class UserTerminal
 	{
 		private Storage storage;
 		private Boolean readAccess;
@@ -18,26 +18,26 @@ namespace militOfficeLib
 			this.storage = storage;
 		}
 
-		public User getUserBylogin(string login)
+		public User GetUserBylogin(string login)
 		{
 			if (readAccess)
-				return storage.getUserBylogin(login);
+				return storage.GetUserBylogin(login);
 			else
 				throw new PermissionDeniedException("today is not your day");
 		}
 
-		public IEnumerable<User> getAllUsers()
+		public IEnumerable<User> GetAllUsers()
 		{
 			if (readAccess)
-				return storage.getAllUsers();
+				return storage.GetAllUsers();
 			else
 				throw new PermissionDeniedException("today is not your day");
 		}
 
-		public void addUser(User user)
+		public void AddUser(User user)
 		{
 			if (writeAccess)
-				storage.addUser(user);
+				storage.AddUser(user);
 			else
 				throw new PermissionDeniedException("today is not your day");
 		}

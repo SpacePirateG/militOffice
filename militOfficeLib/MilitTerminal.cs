@@ -27,36 +27,36 @@ namespace militOfficeLib
 		public OrderTerminal OrderTerminal{
 			get{
 				if (orderTerminal == null)
-					orderTerminal = new OrderTerminal(storage, availableCommands.HasFlag(Commands.orderWrite), availableCommands.HasFlag(Commands.orderRead));
+					orderTerminal = new OrderTerminal(storage, AvailableCommands.HasFlag(Commands.orderWrite), AvailableCommands.HasFlag(Commands.orderRead));
 				return orderTerminal;
 			}
 		}
 		
 		public RecruitTerminal RecruitTerminal{
 			get{
-				if (recruitTerminal == null && availableCommands.HasFlag(Commands.recruitsRead))
-					recruitTerminal = new RecruitTerminal(storage, availableCommands.HasFlag(Commands.recruitsWrite));
+				if (recruitTerminal == null && AvailableCommands.HasFlag(Commands.recruitsRead))
+					recruitTerminal = new RecruitTerminal(storage, AvailableCommands.HasFlag(Commands.recruitsWrite));
 				return recruitTerminal;
 			}
 		}
 
-		public void authentication(string login, string password)
+		public void Authentication(string login, string password)
         {
-            User userByLogin = storage.getUserBylogin(login);
+            User userByLogin = storage.GetUserBylogin(login);
 			if (userByLogin == null || password != user.password)
 				throw  new System.Security.Authentication.AuthenticationException("retry authentication");
 			user = userByLogin;
         }
 
-		public bool isAuthenticated()
+		public bool IsAuthenticated()
 		{
 			return user != null;
 		}
 
-        public Commands availableCommands
+        public Commands AvailableCommands
         {
 			get{
-				if (!isAuthenticated())
+				if (!IsAuthenticated())
 					return Commands.none;
 
 				return Constants.availableCommands[user.permission];

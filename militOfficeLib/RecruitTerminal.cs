@@ -18,50 +18,50 @@ namespace militOfficeLib
 			this.storage = storage;
 		}
 		
-        public IEnumerable<Recruit> getAllRecruits()
+        public IEnumerable<Recruit> GetAllRecruits()
         {
 			if (readAccess)
-                return storage.getAllRecruits();
+                return storage.GetAllRecruits();
             else
 				throw new PermissionDeniedException("today is not your day");
         }
 
-        public IEnumerable<Recruit> getRecruitsByCategory(string category)
+        public IEnumerable<Recruit> GetRecruitsByCategory(string category)
         {
 			if (readAccess)
-                return storage.getRecruitsByCategory(category);
+                return storage.GetRecruitsByCategory(category);
             else
 				throw new PermissionDeniedException("today is not your day");
         }
 
-        public IEnumerable<Recruit> getRecruitsByConviction(String conviction)
+        public IEnumerable<Recruit> GetRecruitsByConviction(String conviction)
         {
 			if (readAccess)
-                return storage.getRecruitsByConviction(conviction);
+                return storage.GetRecruitsByConviction(conviction);
             else
 				throw new PermissionDeniedException("today is not your day");
         }
 
-        public IEnumerable<Recruit> getRecruitsByPostponement(String postponement)
+        public IEnumerable<Recruit> GetRecruitsByPostponement(String postponement)
         {
 			if (readAccess)
-                return storage.getRecruitsByPostponement(postponement);
+                return storage.GetRecruitsByPostponement(postponement);
             else
 				throw new PermissionDeniedException("today is not your day");
         }
 
-        public Recruit getRecruitById(Int32 id)
+        public Recruit GetRecruitById(Int32 id)
         {
 			if (readAccess)
-                return storage.getRecruitById(id);
+                return storage.GetRecruitById(id);
             else
 				throw new PermissionDeniedException("today is not your day");
         }
 
-        public void addRecruit(Recruit recruit)
+        public void AddRecruit(Recruit recruit)
         {
             if (writeAccess)
-                storage.addRecruit(recruit);
+                storage.AddRecruit(recruit);
             else
 				throw new PermissionDeniedException("today is not your day");
         }

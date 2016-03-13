@@ -16,27 +16,47 @@ using militOfficeLib;
 
 namespace militOfficeUI
 {
-	/// <summary>
-	/// Логика взаимодействия для MainWindow.xaml
-	/// </summary>
-	public partial class MainWindow : Window
-	{
-		//private MilitTerminal militTerminal;
-		private RecruitTerminal recruitTerminal;
-		private UserTerminal userTerminal;
-		private OrderTerminal orderTerminal;
-		private Commands availableCommands;
+    /// <summary>
+    /// Логика взаимодействия для MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
+    {
+        //private MilitTerminal militTerminal;
+        private RecruitTerminal recruitTerminal;
+        private UserTerminal userTerminal;
+        private OrderTerminal orderTerminal;
+        private Commands availableCommands;
 
-		public MainWindow(MilitTerminal militTerminal)
-		{
-			InitializeComponent();
-			//this.militTerminal = militTerminal;
-			this.availableCommands = militTerminal.AvailableCommands;
-			this.recruitTerminal = militTerminal.RecruitTerminal;
-			this.orderTerminal = militTerminal.OrderTerminal;
+        public MainWindow(MilitTerminal militTerminal)
+        {
+            InitializeComponent();
+            //this.militTerminal = militTerminal;
+            this.availableCommands = militTerminal.AvailableCommands;
+            this.recruitTerminal = militTerminal.RecruitTerminal;
+            this.orderTerminal = militTerminal.OrderTerminal;
             this.userTerminal = militTerminal.UserTerminal;
-			
 
-		}
-	}
+            CreateUserScreen();
+            CreateRecruitsScreen();
+            CreateOrdersScreen();
+
+
+
+        }
+
+        private void CreateRecruitsScreen()
+        {
+            Recruits.ItemsSource = recruitTerminal.GetAll();
+        }
+
+        private void CreateOrdersScreen()
+        {
+            Orders.ItemsSource = orderTerminal.GetAll();
+        }
+
+        private void CreateUserScreen()
+        {
+            Users.ItemsSource = userTerminal.GetAll();
+        }
+    }
 }

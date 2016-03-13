@@ -30,10 +30,10 @@ namespace militOfficeLib
             get
             {
                 if (orderTerminal == null)
-                {
-                    orderTerminal = new OrderTerminal(storage, AvailableCommands.HasFlag(Commands.orderWrite),
-                        AvailableCommands.HasFlag(Commands.orderRead));
-                }
+                    orderTerminal = new OrderTerminal(storage,
+                        AvailableCommands.HasFlag(Commands.orderWrite),
+                        AvailableCommands.HasFlag(Commands.orderRead)
+                        );
                 return orderTerminal;
             }
         }
@@ -43,10 +43,11 @@ namespace militOfficeLib
             get
             {
                 if (recruitTerminal == null)
-                {
-                    recruitTerminal = new RecruitTerminal(storage, AvailableCommands.HasFlag(Commands.recruitsWrite),
-                       AvailableCommands.HasFlag(Commands.recruitsRead));
-                }
+                    recruitTerminal = new RecruitTerminal(storage,
+                       AvailableCommands.HasFlag(Commands.recruitsWrite),
+                       AvailableCommands.HasFlag(Commands.recruitsRead)
+                       );
+                
                 return recruitTerminal;
             }
         }
@@ -57,8 +58,10 @@ namespace militOfficeLib
             {
                 if (userTerminal == null)
                 {
-                    userTerminal = new UserTerminal(storage, AvailableCommands.HasFlag(Commands.userWrite),
-                        AvailableCommands.HasFlag(Commands.userRead));
+                    userTerminal = new UserTerminal(storage,
+                        AvailableCommands.HasFlag(Commands.userWrite),
+                        AvailableCommands.HasFlag(Commands.userRead)
+                        );
                 }
                 return userTerminal;
             }
@@ -95,9 +98,7 @@ namespace militOfficeLib
             get
             {
                 if (!IsAuthenticated())
-                {
                     return Commands.none;
-                }
 
                 return Constants.availableCommands[user.permission];
             }

@@ -5,7 +5,7 @@
         ">
     <Grid>
         <TabControl Height="450" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="972" HorizontalAlignment="Left">
-            <TabItem Header="TabItem" Height="23" VerticalAlignment="Top">
+            <TabItem Header="Призывники" Height="23" VerticalAlignment="Top">
                 <DataGrid Margin="83,10,-3,-4"/>
             </TabItem>
             <TabItem Header="TabItem">

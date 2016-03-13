@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using militOfficeLib;
 
 namespace militOfficeUI
 {
@@ -20,13 +21,21 @@ namespace militOfficeUI
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		public MainWindow()
+		//private MilitTerminal militTerminal;
+		private RecruitTerminal recruitTerminal;
+		private UserTerminal userTerminal;
+		private OrderTerminal orderTerminal;
+		private Commands availableCommands;
+
+		public MainWindow(MilitTerminal militTerminal)
 		{
 			InitializeComponent();
-		}
-
-		private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
+			//this.militTerminal = militTerminal;
+			this.availableCommands = militTerminal.AvailableCommands;
+			this.recruitTerminal = militTerminal.RecruitTerminal;
+			this.orderTerminal = militTerminal.OrderTerminal;
+            this.userTerminal = militTerminal.UserTerminal;
+			
 
 		}
 	}

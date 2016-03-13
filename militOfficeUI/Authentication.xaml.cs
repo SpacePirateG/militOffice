@@ -31,8 +31,8 @@ namespace militOfficeUI
 			MilitTerminal militTerminal = ((App)Application.Current).militTerminal;
 			try
 			{
-				militTerminal.authentication(LoginField.Text, PasswordField.Password);
-				new MainWindow().Show();
+				militTerminal.Authentication(LoginField.Text, PasswordField.Password);
+				new MainWindow(militTerminal).Show();
 				this.Hide();
 			}
 			catch (AuthenticationException)

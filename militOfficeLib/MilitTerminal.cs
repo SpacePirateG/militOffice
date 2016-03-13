@@ -32,7 +32,8 @@ namespace militOfficeLib
                 if (orderTerminal == null)
                     orderTerminal = new OrderTerminal(storage,
                         AvailableCommands.HasFlag(Commands.orderWrite),
-                        AvailableCommands.HasFlag(Commands.orderRead));
+                        AvailableCommands.HasFlag(Commands.orderRead)
+                    );
 
                 return orderTerminal;
             }
@@ -45,8 +46,9 @@ namespace militOfficeLib
                 if (recruitTerminal == null)
                     recruitTerminal = new RecruitTerminal(storage,
                        AvailableCommands.HasFlag(Commands.recruitsWrite),
-                       AvailableCommands.HasFlag(Commands.recruitsRead));
-                
+                       AvailableCommands.HasFlag(Commands.recruitsRead)
+                    );
+
                 return recruitTerminal;
             }
         }
@@ -58,7 +60,8 @@ namespace militOfficeLib
                 if (userTerminal == null)
                     userTerminal = new UserTerminal(storage,
                         AvailableCommands.HasFlag(Commands.userWrite),
-                        AvailableCommands.HasFlag(Commands.userRead));
+                        AvailableCommands.HasFlag(Commands.userRead)
+                    );
 
                 return userTerminal;
             }

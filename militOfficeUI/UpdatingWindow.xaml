@@ -1,0 +1,8 @@
+﻿<Window x:Class="militOfficeUI.UpdatingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="UpdatingWindow" Height="411.328" Width="300">
+    <Grid>
+        <Button Content="Обновить" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="100" FontSize="16"/>
+    </Grid>
+</Window>

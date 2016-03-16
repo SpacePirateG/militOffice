@@ -64,5 +64,50 @@ namespace militOfficeUI
         {
             Users.ItemsSource = userTerminal.GetAll();
         }
+
+        private void AddRecruitButton_Click(object sender, RoutedEventArgs e)
+        {
+            new AddingWindow().Show();
+        }
+
+        private void UpdateRecruitButton_Click(object sender, RoutedEventArgs e)
+        {
+            new UpdatingWindow().Show();
+        }
+
+        private void DeleteRecruitButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AddOrderButton_Click(object sender, RoutedEventArgs e)
+        {
+            new AddingWindow().Show();
+        }
+
+        private void UpdateOrderButton_Click(object sender, RoutedEventArgs e)
+        {
+            new UpdatingWindow().Show();
+        }
+
+        private void DeleteOrderButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AddUserButton_Click(object sender, RoutedEventArgs e)
+        {
+            new AddingWindow().Show();
+        }
+
+        private void UpdateUserButton_Click(object sender, RoutedEventArgs e)
+        {
+            new UpdatingWindow().Show();
+        }
+
+        private void DeleteUserButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

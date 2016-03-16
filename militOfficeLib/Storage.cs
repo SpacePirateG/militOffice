@@ -22,8 +22,10 @@ namespace militOfficeLib
             connection = new MySqlConnection(connectSettings);
         }
 
-        private DataTable Query(string sql)
+        public DataTable Query(string sql)
         {
+            return null;
+            /*
             MySqlCommand sqlCommand = new MySqlCommand(sql, connection);
             DataTable dataTable = new DataTable();
 
@@ -36,109 +38,8 @@ namespace militOfficeLib
 
             connection.Close();
             return dataTable;
+             */ 
         }
 
-
-        //========Recruits=======
-        public IEnumerable<Recruit> GetAllRecruits()
-        {
-            return null;
-        }
-
-        public IEnumerable<Recruit> GetRecruitsByCategory(String category)
-        {
-            return null;
-        }
-
-        //выборка по судимости
-        public IEnumerable<Recruit> GetRecruitsByConviction(String conviction)
-        {
-            return null;
-        }
-
-        //выборка по отсрочке
-        public IEnumerable<Recruit> GetRecruitsByPostponement(String postponement)
-        {
-            return null;
-        }
-
-        public Recruit GetRecruitById(Int32 id)
-        {
-            return null;
-        }
-
-        public void AddRecruit(Recruit recruit)
-        {
-
-        }
-
-        public void UpdateRecruit(Recruit recruit)
-        {
-
-        }
-
-        public void DeleteRecruit(Int32 id)
-        {
-
-        }
-
-        //========Orders=======
-
-        public IEnumerable<Order> GetAllOrders()
-        {
-            return null;
-        }
-
-        public IEnumerable<Order> GetAllOrdersByDate(DateTime date)
-        {
-            return null;
-        }
-
-        public Order GetOrderByRecruitId(Int32 id)
-        {
-            return null;
-        }
-
-        public void AddOrder(Order order)
-        {
-
-        }
-
-        public void UpdateOrder(Order order)
-        {
-
-        }
-
-        public void DeleteOrder(Int32 id)
-        {
-
-        }
-
-        //=========Users==========
-
-        public User GetUserBylogin(string login)
-        {
-            return null;
-        }
-
-        public IEnumerable<User> GetAllUsers()
-        {
-            return null;
-        }
-
-        public void AddUser(User user)
-        {
-
-        }
-
-        public void UpdateUser(User user)
-        {
-            
-        }
-
-        public void DeleteUser(Int32 id)
-        {
-
-        }
     }
 }

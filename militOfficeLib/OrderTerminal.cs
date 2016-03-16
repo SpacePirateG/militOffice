@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace militOfficeLib
 {
@@ -22,7 +23,10 @@ namespace militOfficeLib
         public IEnumerable<Order> GetAll()
         {
             if (readAccess)
-                return storage.GetAllOrders();
+            {
+                DataTable dataTable = storage.Query("");
+                return null;
+            }
             else
                 throw new PermissionDeniedException("today is not your day");
         }
@@ -30,7 +34,10 @@ namespace militOfficeLib
         public IEnumerable<Order> GetAllByDate(DateTime date)
         {
             if (readAccess)
-                return storage.GetAllOrdersByDate(date);
+            {
+                DataTable dataTable = storage.Query("");
+                return null;
+            }
             else
                 throw new PermissionDeniedException("today is not your day");
         }
@@ -38,7 +45,10 @@ namespace militOfficeLib
         public Order GetByRecruitId(Int32 id)
         {
             if (readAccess)
-                return storage.GetOrderByRecruitId(id);
+            {
+                DataTable dataTable = storage.Query("");
+                return null;
+            }
             else
                 throw new PermissionDeniedException("today is not your day");
         }
@@ -46,7 +56,29 @@ namespace militOfficeLib
         public void Add(Order order)
         {
             if (writeAccess)
-                storage.AddOrder(order);
+            {
+                DataTable dataTable = storage.Query("");
+            }
+            else
+                throw new PermissionDeniedException("today is not your day");
+        }
+
+        public void Update(Order order)
+        {
+            if (writeAccess)
+            {
+                storage.Query("");
+            }
+            else
+                throw new PermissionDeniedException("today is not your day");
+        }
+
+        public void DeleteById(int id)
+        {
+            if (writeAccess)
+            {
+                storage.Query("");
+            }
             else
                 throw new PermissionDeniedException("today is not your day");
         }

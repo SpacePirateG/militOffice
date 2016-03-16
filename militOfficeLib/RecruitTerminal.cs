@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace militOfficeLib
 {
@@ -21,7 +22,10 @@ namespace militOfficeLib
         public IEnumerable<Recruit> GetAll()
         {
             if (readAccess)
-                return storage.GetAllRecruits();
+            {
+                DataTable dataTable = storage.Query("");
+                return null;
+            }
             else
                 throw new PermissionDeniedException("today is not your day");
         }
@@ -29,7 +33,10 @@ namespace militOfficeLib
         public IEnumerable<Recruit> GetByCategory(string category)
         {
             if (readAccess)
-                return storage.GetRecruitsByCategory(category);
+            {
+                DataTable dataTable = storage.Query("");
+                return null;
+            }
             else
                 throw new PermissionDeniedException("today is not your day");
         }
@@ -37,7 +44,10 @@ namespace militOfficeLib
         public IEnumerable<Recruit> GetByConviction(String conviction)
         {
             if (readAccess)
-                return storage.GetRecruitsByConviction(conviction);
+            {
+                DataTable dataTable = storage.Query("");
+                return null;
+            }
             else
                 throw new PermissionDeniedException("today is not your day");
         }
@@ -45,7 +55,10 @@ namespace militOfficeLib
         public IEnumerable<Recruit> GetByPostponement(String postponement)
         {
             if (readAccess)
-                return storage.GetRecruitsByPostponement(postponement);
+            {
+                DataTable dataTable = storage.Query("");
+                return null;
+            }
             else
                 throw new PermissionDeniedException("today is not your day");
         }
@@ -53,7 +66,10 @@ namespace militOfficeLib
         public Recruit GetById(Int32 id)
         {
             if (readAccess)
-                return storage.GetRecruitById(id);
+            {
+                DataTable dataTable = storage.Query("");
+                return null;
+            }
             else
                 throw new PermissionDeniedException("today is not your day");
         }
@@ -61,7 +77,29 @@ namespace militOfficeLib
         public void Add(Recruit recruit)
         {
             if (writeAccess)
-                storage.AddRecruit(recruit);
+            {
+                DataTable dataTable = storage.Query("");
+            }
+            else
+                throw new PermissionDeniedException("today is not your day");
+        }
+
+        public void Update(Order order)
+        {
+            if (writeAccess)
+            {
+                storage.Query("");
+            }
+            else
+                throw new PermissionDeniedException("today is not your day");
+        }
+
+        public void DeleteById(int id)
+        {
+            if (writeAccess)
+            {
+                storage.Query("");
+            }
             else
                 throw new PermissionDeniedException("today is not your day");
         }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace militOfficeLib
 {
@@ -21,7 +22,10 @@ namespace militOfficeLib
         public User GetBylogin(string login)
         {
             if (readAccess)
-                return storage.GetUserBylogin(login);
+            {
+                DataTable dataTable = storage.Query("");
+                return null;
+            }
             else
                 throw new PermissionDeniedException("today is not your day");
         }
@@ -29,7 +33,10 @@ namespace militOfficeLib
         public IEnumerable<User> GetAll()
         {
             if (readAccess)
-                return storage.GetAllUsers();
+            {
+                DataTable dataTable = storage.Query("");
+                return null;
+            }
             else
                 throw new PermissionDeniedException("today is not your day");
         }
@@ -37,7 +44,9 @@ namespace militOfficeLib
         public void Add(User user)
         {
             if (writeAccess)
-                storage.AddUser(user);
+            {
+                DataTable dataTable = storage.Query("");
+            }
             else
                 throw new PermissionDeniedException("today is not your day");
         }

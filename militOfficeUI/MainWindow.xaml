@@ -4,28 +4,28 @@
         Title="MainWindow" Height="500" Width="1000
         ">
     <Grid>
-        <TabControl Height="450" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="972" HorizontalAlignment="Left">
-            <TabItem Header="Призывники">
+        <TabControl Name="tabControl" Height="450" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="972" HorizontalAlignment="Left">
+            <TabItem Name="RecruitsItem" Header="Призывники">
                 <Grid Margin="0,-1,0,-3">
-                    <DataGrid Name="Recruits" Margin="83,10,-3,-4"/>
+                    <DataGrid Name="RecruitsTable" Margin="83,10,-3,-4"/>
                     <Button Name="AddRecruitButton"    Content="Добавить" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="75" Click="AddRecruitButton_Click"/>
                     <Button Name="UpdateRecruitButton" Content="Изменить" HorizontalAlignment="Left" Margin="0,46,0,0" VerticalAlignment="Top" Width="75" Click="UpdateRecruitButton_Click"/>
                     <Button Name="DeleteRecruitButton" Content="Удалить" HorizontalAlignment="Left" Margin="0,390,0,0" VerticalAlignment="Top" Width="75" Click="DeleteRecruitButton_Click"/>
                     
                 </Grid>
             </TabItem>
-            <TabItem Header="Повестка">
+            <TabItem Name="OrdersItem" Header="Повестка">
                 <Grid Margin="0,-1,0,-3">
-                    <DataGrid Name="Orders" Margin="83,10,0,-4"/>
+                    <DataGrid Name="OrdersTable" Margin="83,10,0,-4"/>
 
                     <Button Name="AddOrderButton"    Content="Добавить" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="75" Click="AddOrderButton_Click"/>
                     <Button Name="UpdateOrderButton" Content="Изменить" HorizontalAlignment="Left" Margin="0,46,0,0" VerticalAlignment="Top" Width="75" Click="UpdateOrderButton_Click"/>
                     <Button Name="DeleteOrderButton" Content="Удалить" HorizontalAlignment="Left" Margin="0,390,0,0" VerticalAlignment="Top" Width="75" Click="DeleteOrderButton_Click"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Пользователи">
+            <TabItem Name="UsersItem" Header="Пользователи">
                 <Grid Margin="0,-1,0,-3">
-                    <DataGrid Name="Users" Margin="83,10,0,-4"/>
+                    <DataGrid Name="UsersTable" Margin="83,10,0,-4"/>
 
                     <Button Name="AddUserButton"    Content="Добавить" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="75" Click="AddUserButton_Click"/>
                     <Button Name="UpdateUserButton" Content="Изменить" HorizontalAlignment="Left" Margin="0,46,0,0" VerticalAlignment="Top" Width="75" Click="UpdateUserButton_Click"/>

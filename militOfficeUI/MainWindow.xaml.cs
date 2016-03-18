@@ -30,39 +30,65 @@ namespace militOfficeUI
         {
             InitializeComponent();
             this.availableCommands = militTerminal.AvailableCommands;
-            
-            if (availableCommands.HasFlag(Commands.userRead))
+
+            if (availableCommands.HasFlag(Commands.usersRead))
             {
                 this.userTerminal = militTerminal.UserTerminal;
                 CreateUserTable();
+                if (!availableCommands.HasFlag(Commands.usersWrite))
+                {
+                    UpdateUserButton.Visibility = System.Windows.Visibility.Collapsed;
+                    AddUserButton.Visibility = System.Windows.Visibility.Collapsed;
+                    DeleteUserButton.Visibility = System.Windows.Visibility.Collapsed;
+                }
             }
-            if (availableCommands.HasFlag(Commands.userRead))
+            else
+                tabControl.Items.Remove(UsersItem);
+            if (availableCommands.HasFlag(Commands.recruitsRead))
             {
                 this.recruitTerminal = militTerminal.RecruitTerminal;
                 CreateRecruitsTable();
-
+                if (!availableCommands.HasFlag(Commands.recruitsWrite))
+                {
+                    UpdateRecruitButton.Visibility = System.Windows.Visibility.Collapsed;
+                    AddRecruitButton.Visibility = System.Windows.Visibility.Collapsed;
+                    DeleteRecruitButton.Visibility = System.Windows.Visibility.Collapsed;
+                }
             }
-            if (availableCommands.HasFlag(Commands.userRead))
+            else
+                tabControl.Items.Remove(RecruitsItem);
+            if (availableCommands.HasFlag(Commands.ordersRead))
             {
                 this.orderTerminal = militTerminal.OrderTerminal;
                 CreateOrdersTable();
+                if (!availableCommands.HasFlag(Commands.ordersWrite))
+                {
+                    UpdateOrderButton.Visibility = System.Windows.Visibility.Collapsed;
+                    AddOrderButton.Visibility = System.Windows.Visibility.Collapsed;
+                    DeleteOrderButton.Visibility = System.Windows.Visibility.Collapsed;
+                }
+
             }
+            else
+                tabControl.Items.Remove(OrdersItem);
+
+            //if (availableCommands.)
             
         }
 
         private void CreateRecruitsTable()
         {
-            Recruits.ItemsSource = recruitTerminal.GetAll();
+            RecruitsTable.ItemsSource = recruitTerminal.GetAll();
         }
 
         private void CreateOrdersTable()
         {
-            Orders.ItemsSource = orderTerminal.GetAll();
+            OrdersTable.ItemsSource = orderTerminal.GetAll();
         }
 
         private void CreateUserTable()
         {
-            Users.ItemsSource = userTerminal.GetAll();
+            UsersTable.ItemsSource = userTerminal.GetAll();
         }
 
         private void AddRecruitButton_Click(object sender, RoutedEventArgs e)
@@ -72,6 +98,7 @@ namespace militOfficeUI
 
         private void UpdateRecruitButton_Click(object sender, RoutedEventArgs e)
         {
+
             new UpdatingWindow().Show();
         }
 

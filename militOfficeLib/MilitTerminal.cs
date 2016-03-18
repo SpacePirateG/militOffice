@@ -31,8 +31,8 @@ namespace militOfficeLib
             {
                 if (orderTerminal == null)
                     orderTerminal = new OrderTerminal(storage,
-                        AvailableCommands.HasFlag(Commands.orderWrite),
-                        AvailableCommands.HasFlag(Commands.orderRead)
+                        AvailableCommands.HasFlag(Commands.ordersWrite),
+                        AvailableCommands.HasFlag(Commands.ordersRead)
                     );
 
                 return orderTerminal;
@@ -59,8 +59,8 @@ namespace militOfficeLib
             {
                 if (userTerminal == null)
                     userTerminal = new UserTerminal(storage,
-                        AvailableCommands.HasFlag(Commands.userWrite),
-                        AvailableCommands.HasFlag(Commands.userRead)
+                        AvailableCommands.HasFlag(Commands.usersWrite),
+                        AvailableCommands.HasFlag(Commands.usersRead)
                     );
 
                 return userTerminal;
@@ -75,7 +75,7 @@ namespace militOfficeLib
                     "",
                     "",
                     "",
-                    Permission.Admin
+                    Permission.Paramedic
                 );
             else
             {

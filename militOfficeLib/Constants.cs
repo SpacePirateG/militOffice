@@ -14,27 +14,27 @@ namespace militOfficeLib
         public static string port = "19190";
         public static string password = "root";
 
-        public static Commands AdminCommands = Commands.orderRead |
-                                    Commands.orderWrite |
+        public static Commands AdminCommands = Commands.ordersRead |
+                                    Commands.ordersWrite |
                                     Commands.recruitsRead |
                                     Commands.recruitsWrite |
-                                    Commands.userRead |
-                                    Commands.userWrite;
+                                    Commands.usersRead |
+                                    Commands.usersWrite;
 
-        public static Commands ChiefCommands = Commands.orderRead |
-                                    Commands.orderWrite |
+        public static Commands ChiefCommands = Commands.ordersRead |
+                                    Commands.ordersWrite |
                                     Commands.recruitsRead |
                                     Commands.recruitsWrite;
 
-        public static Commands AssistChiefCommands = Commands.orderRead |
-                                    Commands.orderWrite |
+        public static Commands AssistChiefCommands = Commands.ordersRead |
+                                    Commands.ordersWrite |
                                     Commands.recruitsRead |
                                     Commands.recruitsWrite;
 
-        public static Commands ParamedicCommands = Commands.recruitsRead | Commands.recruitsWrite;
+        public static Commands ParamedicCommands = Commands.recruitsRead;
 
-        public static Commands TechnicalStaffCommands = Commands.orderRead |
-                                    Commands.orderWrite |
+        public static Commands TechnicalStaffCommands = Commands.ordersRead |
+                                    Commands.ordersWrite |
                                     Commands.recruitsRead |
                                     Commands.recruitsWrite;
 

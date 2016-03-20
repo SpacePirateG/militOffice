@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace militOfficeLib
 {
-    public enum Permission
+    public enum UserTypes
     {
         Paramedic = 0,
         TechnicalStaff = 1,     
@@ -16,7 +16,7 @@ namespace militOfficeLib
     }
 
     [Flags]
-    public enum Commands
+    public enum Permissions
     {
         none = 0x0,
         recruitsRead = 0x1,
@@ -37,14 +37,14 @@ namespace militOfficeLib
         public String name;
         public String surname;
         public String patronymic;
-        public Permission permission;
+        public UserTypes permission;
         public User(
         String login,
         String password,
         String name,
         String surname,
         String patronymic,
-        Permission permission
+        UserTypes permission
         )
         {
             this.login = login;

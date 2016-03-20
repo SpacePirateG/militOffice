@@ -24,18 +24,18 @@ namespace militOfficeUI
         private RecruitTerminal recruitTerminal;
         private UserTerminal userTerminal;
         private OrderTerminal orderTerminal;
-        private Commands availableCommands;
+        private Permissions availablePermissions;
 
         public MainWindow(MilitTerminal militTerminal)
         {
             InitializeComponent();
-            this.availableCommands = militTerminal.AvailableCommands;
+            this.availablePermissions = militTerminal.AvailablePermissions;
 
-            if (availableCommands.HasFlag(Commands.usersRead))
+            if (availablePermissions.HasFlag(Permissions.usersRead))
             {
                 this.userTerminal = militTerminal.UserTerminal;
                 CreateUserTable();
-                if (!availableCommands.HasFlag(Commands.usersWrite))
+                if (!availablePermissions.HasFlag(Permissions.usersWrite))
                 {
                     UpdateUserButton.Visibility = System.Windows.Visibility.Collapsed;
                     AddUserButton.Visibility = System.Windows.Visibility.Collapsed;
@@ -44,11 +44,11 @@ namespace militOfficeUI
             }
             else
                 tabControl.Items.Remove(UsersItem);
-            if (availableCommands.HasFlag(Commands.recruitsRead))
+            if (availablePermissions.HasFlag(Permissions.recruitsRead))
             {
                 this.recruitTerminal = militTerminal.RecruitTerminal;
                 CreateRecruitsTable();
-                if (!availableCommands.HasFlag(Commands.recruitsWrite))
+                if (!availablePermissions.HasFlag(Permissions.recruitsWrite))
                 {
                     UpdateRecruitButton.Visibility = System.Windows.Visibility.Collapsed;
                     AddRecruitButton.Visibility = System.Windows.Visibility.Collapsed;
@@ -57,11 +57,11 @@ namespace militOfficeUI
             }
             else
                 tabControl.Items.Remove(RecruitsItem);
-            if (availableCommands.HasFlag(Commands.ordersRead))
+            if (availablePermissions.HasFlag(Permissions.ordersRead))
             {
                 this.orderTerminal = militTerminal.OrderTerminal;
                 CreateOrdersTable();
-                if (!availableCommands.HasFlag(Commands.ordersWrite))
+                if (!availablePermissions.HasFlag(Permissions.ordersWrite))
                 {
                     UpdateOrderButton.Visibility = System.Windows.Visibility.Collapsed;
                     AddOrderButton.Visibility = System.Windows.Visibility.Collapsed;

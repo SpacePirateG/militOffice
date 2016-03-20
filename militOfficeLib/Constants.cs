@@ -14,36 +14,36 @@ namespace militOfficeLib
         public static string port = "19190";
         public static string password = "root";
 
-        public static Commands AdminCommands = Commands.ordersRead |
-                                    Commands.ordersWrite |
-                                    Commands.recruitsRead |
-                                    Commands.recruitsWrite |
-                                    Commands.usersRead |
-                                    Commands.usersWrite;
+        public static Permissions AdminCommands = Permissions.ordersRead |
+                                    Permissions.ordersWrite |
+                                    Permissions.recruitsRead |
+                                    Permissions.recruitsWrite |
+                                    Permissions.usersRead |
+                                    Permissions.usersWrite;
 
-        public static Commands ChiefCommands = Commands.ordersRead |
-                                    Commands.ordersWrite |
-                                    Commands.recruitsRead |
-                                    Commands.recruitsWrite;
+        public static Permissions ChiefCommands = Permissions.ordersRead |
+                                    Permissions.ordersWrite |
+                                    Permissions.recruitsRead |
+                                    Permissions.recruitsWrite;
 
-        public static Commands AssistChiefCommands = Commands.ordersRead |
-                                    Commands.ordersWrite |
-                                    Commands.recruitsRead |
-                                    Commands.recruitsWrite;
+        public static Permissions AssistChiefCommands = Permissions.ordersRead |
+                                    Permissions.ordersWrite |
+                                    Permissions.recruitsRead |
+                                    Permissions.recruitsWrite;
 
-        public static Commands ParamedicCommands = Commands.recruitsRead;
+        public static Permissions ParamedicCommands = Permissions.recruitsRead;
 
-        public static Commands TechnicalStaffCommands = Commands.ordersRead |
-                                    Commands.ordersWrite |
-                                    Commands.recruitsRead |
-                                    Commands.recruitsWrite;
+        public static Permissions TechnicalStaffCommands = Permissions.ordersRead |
+                                    Permissions.ordersWrite |
+                                    Permissions.recruitsRead |
+                                    Permissions.recruitsWrite;
 
-        public static Dictionary<Permission, Commands> availableCommands = new Dictionary<Permission, Commands>{
-             { Permission.Admin, AdminCommands },
-             { Permission.Chief, ChiefCommands },
-             { Permission.AssistChief, AssistChiefCommands },
-             { Permission.Paramedic, ParamedicCommands },
-             { Permission.TechnicalStaff, TechnicalStaffCommands }
+        public static Dictionary<UserTypes, Permissions> availablePermissions = new Dictionary<UserTypes, Permissions>{
+             { UserTypes.Admin, AdminCommands },
+             { UserTypes.Chief, ChiefCommands },
+             { UserTypes.AssistChief, AssistChiefCommands },
+             { UserTypes.Paramedic, ParamedicCommands },
+             { UserTypes.TechnicalStaff, TechnicalStaffCommands }
         };
 
     }

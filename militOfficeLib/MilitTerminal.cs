@@ -31,8 +31,8 @@ namespace militOfficeLib
             {
                 if (orderTerminal == null)
                     orderTerminal = new OrderTerminal(storage,
-                        AvailableCommands.HasFlag(Commands.ordersWrite),
-                        AvailableCommands.HasFlag(Commands.ordersRead)
+                        AvailablePermissions.HasFlag(Permissions.ordersWrite),
+                        AvailablePermissions.HasFlag(Permissions.ordersRead)
                     );
 
                 return orderTerminal;
@@ -45,8 +45,8 @@ namespace militOfficeLib
             {
                 if (recruitTerminal == null)
                     recruitTerminal = new RecruitTerminal(storage,
-                       AvailableCommands.HasFlag(Commands.recruitsWrite),
-                       AvailableCommands.HasFlag(Commands.recruitsRead)
+                       AvailablePermissions.HasFlag(Permissions.recruitsWrite),
+                       AvailablePermissions.HasFlag(Permissions.recruitsRead)
                     );
 
                 return recruitTerminal;
@@ -59,8 +59,8 @@ namespace militOfficeLib
             {
                 if (userTerminal == null)
                     userTerminal = new UserTerminal(storage,
-                        AvailableCommands.HasFlag(Commands.usersWrite),
-                        AvailableCommands.HasFlag(Commands.usersRead)
+                        AvailablePermissions.HasFlag(Permissions.usersWrite),
+                        AvailablePermissions.HasFlag(Permissions.usersRead)
                     );
 
                 return userTerminal;
@@ -75,7 +75,7 @@ namespace militOfficeLib
                     "",
                     "",
                     "",
-                    Permission.Paramedic
+                    UserTypes.TechnicalStaff
                 );
             else
             {
@@ -93,14 +93,14 @@ namespace militOfficeLib
             return user != null;
         }
 
-        public Commands AvailableCommands
+        public Permissions AvailablePermissions
         {
             get
             {
                 if (!IsAuthenticated())
-                    return Commands.none;
+                    return Permissions.none;
 
-                return Constants.availableCommands[user.permission];
+                return Constants.availablePermissions[user.permission];
             }
         }
 

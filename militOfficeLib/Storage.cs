@@ -22,7 +22,7 @@ namespace militOfficeLib
             connection = new MySqlConnection(connectSettings);
         }
 
-        public DataTable Query(string sql)
+        public DataTable Query(string query)
         {
             return null;
             /*

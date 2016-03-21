@@ -100,7 +100,7 @@ namespace militOfficeLib
                 if (!IsAuthenticated())
                     return Permissions.none;
 
-                return Constants.availablePermissions[user.permission];
+                return Constants.availablePermissions[user.type];
             }
         }
 

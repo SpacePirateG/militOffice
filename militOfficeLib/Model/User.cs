@@ -37,14 +37,14 @@ namespace militOfficeLib
         public String name;
         public String surname;
         public String patronymic;
-        public UserTypes permission;
+        public UserTypes type;
         public User(
         String login,
         String password,
         String name,
         String surname,
         String patronymic,
-        UserTypes permission
+        UserTypes type
         )
         {
             this.login = login;
@@ -52,7 +52,7 @@ namespace militOfficeLib
             this.name = name;
             this.surname = surname;
             this.patronymic = patronymic;
-            this.permission = permission;
+            this.type = type;
         }
     }
 }

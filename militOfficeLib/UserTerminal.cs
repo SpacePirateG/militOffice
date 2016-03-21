@@ -51,5 +51,15 @@ namespace militOfficeLib
                 throw new PermissionDeniedException("today is not your day");
         }
 
+        public void Delete(Int32 id)
+        {
+            if (writeAccess)
+            {
+                DataTable dataTable = storage.Query("");
+            }
+            else
+                throw new PermissionDeniedException("today is not your day");
+        }
+
     }
 }

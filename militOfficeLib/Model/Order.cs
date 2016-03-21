@@ -9,18 +9,18 @@ namespace militOfficeLib
     public class Order
     {
         public Int32 id;
-        public Recruit recruit;
+        public Int32 recruitId;
         public DateTime date;
         public String cause;
         public Order(
             Int32 id,
-            Recruit recruit,
+            Int32 recruitId,
             DateTime date,
             String cause
             )
         {
             this.id = id;
-            this.recruit = recruit;
+            this.recruitId = recruitId;
             this.date = date;
             this.cause = cause;
         }

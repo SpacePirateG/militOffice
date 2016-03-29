@@ -10,13 +10,11 @@ namespace militOfficeLib.Tests
     [TestClass()]
     public class MilitTerminalTests
     {
-        UserTerminal mockUserTerminal = new CorrectUserTerminal();
-        MilitTerminal militTerminal = new MilitTerminal();
 
        // проверка на выброшенное исключение
         private void AuthenticationExceptionThrown()
         {
-            militTerminal = new MilitTerminal(new ExceptionUserTerminal());
+            var militTerminal = new MilitTerminal(new ExceptionUserTerminal());
 
             try
             {
@@ -32,7 +30,7 @@ namespace militOfficeLib.Tests
         // пользователь аутентфифиваив
         private void CorrectAuthentication()
         {
-            militTerminal = new MilitTerminal(new CorrectUserTerminal());
+            var militTerminal = new MilitTerminal(new CorrectUserTerminal());
             User user = new CorrectUserTerminal().GetBylogin("test");
 
             try

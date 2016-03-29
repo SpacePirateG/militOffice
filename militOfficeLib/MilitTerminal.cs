@@ -8,7 +8,7 @@ namespace militOfficeLib
 {
     public class MilitTerminal
     {
-        private User user;
+        public User User { get; private set; }
         private Storage storage;
         private OrderTerminal orderTerminal;
         private RecruitTerminal recruitTerminal;
@@ -23,6 +23,11 @@ namespace militOfficeLib
                 Constants.port,
                 Constants.password
             );
+        }
+
+        public MilitTerminal(UserTerminal userTerminal)
+        {
+            this.userTerminal = userTerminal;
         }
 
         public OrderTerminal OrderTerminal
@@ -69,8 +74,9 @@ namespace militOfficeLib
 
         public void Authentication(string login, string password)
         {
+            
             if (login == "" && password == "")
-                user = new User(login,
+                User = new User(login,
                     password,
                     "",
                     "",
@@ -79,18 +85,24 @@ namespace militOfficeLib
                 );
             else
             {
-                User userByLogin = userTerminal.GetBylogin(login);
+                User userByLogin = UserTerminal.GetBylogin(login);
 
-                if (userByLogin == null || password != user.password)
+                if (userByLogin == null || password != User.password)
                     throw new System.Security.Authentication.AuthenticationException("retry authentication");
-                user = userByLogin;
+                User = userByLogin;
             }
+             /*
+            User userByLogin = UserTerminal.GetBylogin(login);
 
+            if (userByLogin == null || password != userByLogin.password)
+                throw new System.Security.Authentication.AuthenticationException("retry authentication");
+            User = userByLogin;
+              */ 
         }
 
         public bool IsAuthenticated()
         {
-            return user != null;
+            return User != null;
         }
 
         public Permissions AvailablePermissions
@@ -100,7 +112,7 @@ namespace militOfficeLib
                 if (!IsAuthenticated())
                     return Permissions.none;
 
-                return Constants.availablePermissions[user.type];
+                return Constants.availablePermissions[User.type];
             }
         }
 

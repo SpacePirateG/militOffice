@@ -10,8 +10,11 @@ namespace militOfficeLib
     public class UserTerminal
     {
         private Storage storage;
-        private Boolean readAccess;
-        private Boolean writeAccess;
+        public Boolean readAccess { get; protected set; }
+        public Boolean writeAccess { get; protected set; }
+
+        public UserTerminal() { }
+
         public UserTerminal(Storage storage, Boolean writeAccess, Boolean readAccess = true)
         {
             this.readAccess = readAccess;
@@ -19,7 +22,7 @@ namespace militOfficeLib
             this.storage = storage;
         }
 
-        public User GetBylogin(string login)
+        public virtual User GetBylogin(string login)
         {
             if (readAccess)
             {
@@ -30,7 +33,7 @@ namespace militOfficeLib
                 throw new PermissionDeniedException("today is not your day");
         }
 
-        public IEnumerable<User> GetAll()
+        public virtual IEnumerable<User> GetAll()
         {
             if (readAccess)
             {
@@ -41,7 +44,7 @@ namespace militOfficeLib
                 throw new PermissionDeniedException("today is not your day");
         }
 
-        public void Add(User user)
+        public virtual void Add(User user)
         {
             if (writeAccess)
             {
@@ -51,7 +54,7 @@ namespace militOfficeLib
                 throw new PermissionDeniedException("today is not your day");
         }
 
-        public void Delete(Int32 id)
+        public virtual void Delete(Int32 id)
         {
             if (writeAccess)
             {

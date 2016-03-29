@@ -10,8 +10,8 @@ namespace militOfficeLib
     public class OrderTerminal
     {
         private Storage storage;
-        private Boolean readAccess;
-        private Boolean writeAccess;
+        public Boolean readAccess { get; private set; }
+        public Boolean writeAccess { get; private set; }
 
         internal OrderTerminal(Storage storage, Boolean writeAccess, Boolean readAccess = true)
         {

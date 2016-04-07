@@ -91,13 +91,15 @@ namespace militOfficeLib
                     throw new System.Security.Authentication.AuthenticationException("retry authentication");
                 User = userByLogin;
             }
+            //для запуска тестов милит терминала этот кусок раскометить, а верхний закометить
+            //потому что у нас нихуя не доделано
              /*
             User userByLogin = UserTerminal.GetBylogin(login);
 
             if (userByLogin == null || password != userByLogin.password)
                 throw new System.Security.Authentication.AuthenticationException("retry authentication");
             User = userByLogin;
-              */ 
+               */
         }
 
         public bool IsAuthenticated()

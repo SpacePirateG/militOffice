@@ -56,6 +56,7 @@
     <Compile Include="MilitTerminalTests.cs" />
     <Compile Include="RecruitTerminalTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StorageTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\militOfficeLib\militOfficeLib.csproj">

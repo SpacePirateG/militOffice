@@ -23,9 +23,7 @@ namespace militOfficeLib
         }
 
         public DataTable Query(string sql)
-        {
-            return null;
-            /*
+        {           
             MySqlCommand sqlCommand = new MySqlCommand(sql, connection);
             DataTable dataTable = new DataTable();
 
@@ -37,9 +35,7 @@ namespace militOfficeLib
             }
 
             connection.Close();
-            return dataTable;
-             */ 
+            return dataTable;             
         }
-
     }
 }

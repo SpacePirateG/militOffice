@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("militOfficeLibUnitTests")]
 
 namespace militOfficeLib
 {
@@ -74,32 +77,11 @@ namespace militOfficeLib
 
         public void Authentication(string login, string password)
         {
-            
-            if (login == "" && password == "")
-                User = new User(login,
-                    password,
-                    "",
-                    "",
-                    "",
-                    UserTypes.TechnicalStaff
-                );
-            else
-            {
-                User userByLogin = UserTerminal.GetBylogin(login);
-
-                if (userByLogin == null || password != User.password)
-                    throw new System.Security.Authentication.AuthenticationException("retry authentication");
-                User = userByLogin;
-            }
-            //для запуска тестов милит терминала этот кусок раскометить, а верхний закометить
-            //потому что у нас нихуя не доделано
-             /*
             User userByLogin = UserTerminal.GetBylogin(login);
 
             if (userByLogin == null || password != userByLogin.password)
                 throw new System.Security.Authentication.AuthenticationException("retry authentication");
             User = userByLogin;
-               */
         }
 
         public bool IsAuthenticated()

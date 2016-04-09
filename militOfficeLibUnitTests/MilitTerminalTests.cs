@@ -24,11 +24,9 @@ namespace militOfficeLib.Tests
             }
             catch (System.Security.Authentication.AuthenticationException)
             {
-                logger.Info("Тест на выброшенное исключения пройден успешно");
                 return;
             }
 
-            logger.Error("Тест на выброшенное исключения не пройден");
             Assert.Fail("No exception was thrown.");     
         }
 
@@ -49,22 +47,33 @@ namespace militOfficeLib.Tests
 
             bool userEqual = user.login == militTerminal.User.login &&
                             user.type == militTerminal.User.type;
-            Assert.IsTrue(userEqual);           
+
+            Assert.IsTrue(userEqual);
         }
 
         //тест на аутентификацию
         [TestMethod()]
         public void AuthenticationTest()
         {
-            AuthenticationExceptionThrown(); //тест на выброшенное исключение
-            CorrectAuthentication(); //тест на авторизацию
+            try
+            {
+                AuthenticationExceptionThrown(); //тест на выброшенное исключение
+                CorrectAuthentication(); //тест на авторизацию
+
+                logger.Info("Тест на выброшенное исключение пройден");
+            }
+            catch (AssertFailedException ex)
+            {
+                logger.Error("Тест на выброшенное исключение не пройден: " + ex.Source);
+                throw new AssertFailedException();
+            }
         }
 
         
         private void IsAuthenticated()
         {
             var militTerminal = new MilitTerminal(new CorrectUserTerminal());
-            militTerminal.Authentication("test", "test");
+            militTerminal.Authentication("test", "test");                
             Assert.IsTrue(militTerminal.IsAuthenticated());
         }
 
@@ -78,8 +87,18 @@ namespace militOfficeLib.Tests
         [TestMethod()]
         public void IsAuthenticatedTest()
         {
-            IsAuthenticated();
-            IsNotAuthenticated();
+            try
+            {
+                IsAuthenticated();
+                IsNotAuthenticated();
+
+                logger.Info("Тест на проверку аутентификации пройден");
+            }
+            catch (AssertFailedException ex)
+            {
+                logger.Error("Тест на проверку аутентификации не пройден: " + ex.Source);
+                throw new AssertFailedException();
+            }
         }
 
 
@@ -100,8 +119,18 @@ namespace militOfficeLib.Tests
         [TestMethod()]
         public void AvailablePermissions()
         {
-            AreAvailablePermissions();
-            NotAvailablePermissions();
+            try
+            {
+                AreAvailablePermissions();
+                NotAvailablePermissions();
+
+                logger.Info("Тест на доступные разрешения пройден");
+            }
+            catch (AssertFailedException ex)
+            {
+                logger.Error("Тест на доступные разрешения не пройден: " + ex.Source);
+                throw new AssertFailedException();
+            }           
         }
 
         private void GetUtWithAuthorizated()
@@ -123,8 +152,18 @@ namespace militOfficeLib.Tests
         [TestMethod()]
         public void GetUserTerminal()
         {
-            GetUtWithAuthorizated();
-            GetUtWithNotAuthorizated();
+            try
+            {
+                GetUtWithAuthorizated();
+                GetUtWithNotAuthorizated();
+
+                logger.Info("Тест на получение UserTerminal пройден");
+            }
+            catch (AssertFailedException ex)
+            {
+                logger.Error("Тест на получение UserTerminal не пройден: " + ex.Source);
+                throw new AssertFailedException();
+            }          
         }
 
 
@@ -145,12 +184,22 @@ namespace militOfficeLib.Tests
             Assert.IsFalse(terminal.readAccess && terminal.writeAccess);
         }
 
-        //проверка на получение UserTerminal
+        //проверка на получение RecruitTerminal
         [TestMethod()]
         public void GetRecruitTerminal()
         {
-            GetRtWithAuthorizated();
-            GetRtWithNotAuthorizated();
+            try
+            {
+                GetRtWithAuthorizated();
+                GetRtWithNotAuthorizated();
+
+                logger.Info("Тест на получение RecruitTerminal пройден");
+            }
+            catch (AssertFailedException ex)
+            {
+                logger.Error("Тест на получение RecruitTerminal не пройден: " + ex.Source);
+                throw new AssertFailedException();
+            }
         }
 
 
@@ -171,14 +220,23 @@ namespace militOfficeLib.Tests
             Assert.IsFalse(terminal.readAccess && terminal.writeAccess);
         }
 
-        //проверка на получение UserTerminal
+        //проверка на получение OrderTerminal
         [TestMethod()]
         public void GetOrderTerminal()
         {
-            GetOtWithAuthorizated();
-            GetOtWithNotAuthorizated();
-        }
+            try
+            {
+                GetOtWithAuthorizated();
+                GetOtWithNotAuthorizated();
 
+                logger.Info("Тест на получение OrderTerminal пройден");
+            }
+            catch (AssertFailedException ex)
+            {
+                logger.Error("Тест на получение OrderTerminal не пройден: " + ex.Source);
+                throw new AssertFailedException();
+            }
+        }
     }
 
 

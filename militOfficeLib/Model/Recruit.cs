@@ -11,6 +11,8 @@ namespace militOfficeLib
         public String category;
         public String conviction;
         public DateTime postponement;
+
+        public Recruit():base() { }
         public Recruit(
             Int32 id,
             String name,
@@ -38,6 +40,67 @@ namespace militOfficeLib
             this.category = category;
             this.conviction = conviction;
             this.postponement = postponement;
+        }
+
+        public override bool Equals(System.Object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+
+            Recruit p = obj as Recruit;
+            if ((System.Object)p == null)
+            {
+                return false;
+            }
+
+            return name == p.name &&
+                surname == p.surname &&
+                patronymic == p.patronymic &&
+                birthday == p.birthday &&
+                pasport == p.pasport &&
+                phoneNumber == p.phoneNumber &&
+                address == p.address &&
+                category == p.category &&
+                conviction == p.conviction &&
+                postponement == p.postponement;
+        }
+
+        public bool Equals(Recruit p)
+        {
+            if ((object)p == null)
+            {
+                return false;
+            }
+
+            return name == p.name &&
+                surname == p.surname &&
+                patronymic == p.patronymic &&
+                birthday == p.birthday &&
+                pasport == p.pasport &&
+                phoneNumber == p.phoneNumber &&
+                address == p.address &&
+                category == p.category &&
+                conviction == p.conviction &&
+                postponement == p.postponement;
+        }
+
+        public override int GetHashCode()
+        {
+            string str = id +
+                        name +
+                        surname +
+                        patronymic +
+                        birthday +
+                        pasport +
+                        phoneNumber +
+                        address +
+                        category +
+                        conviction +
+                        postponement;
+
+            return str.GetHashCode();
         }
     }
 }

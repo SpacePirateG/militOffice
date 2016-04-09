@@ -2,6 +2,8 @@
 using militOfficeLib;
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
+using System.Collections;
 
 namespace militOfficeLibUnitTests
 {
@@ -12,11 +14,25 @@ namespace militOfficeLibUnitTests
         static String dbName = "test";
         static String tableName = "recruits";
 
-        Recruit[] recruits = new Recruit[]{
-                new Recruit(0,"V","Dv","Se",new DateTime(1994,4,17), "5262462", "+7696929626", "adr", "A","Нет", new DateTime(2018,8,1)),
-                new Recruit(1,"S","V","Al",new DateTime(1994,5,18), "35634", "+7696346336", "adress", "B3","aga", new DateTime(2018,8,1)),
-                new Recruit(1,"HR","TWR","DFD",new DateTime(1994,3,18), "2366346", "+762362366", "ess", "B3","rwga", new DateTime(2018,8,1))
+        List<Recruit> recruits = new List<Recruit>{
+                new Recruit(1,"V","Dv","Se",new DateTime(1994,4,17), "5262462", "9696929626", "adr", "A","Нет", new DateTime(2018,8,1)),
+                new Recruit(2,"S","V","Al",new DateTime(1994,5,18), "35634", "9696346336", "adress", "B3","aga", new DateTime(2018,8,1)),
+                new Recruit(3,"HR","TWR","DFD",new DateTime(1994,3,18), "2366346", "9623623669", "ess", "B3","rwga", new DateTime(2018,8,1))
         };
+
+        Recruit addingRecruit = new Recruit(
+                4,
+                "Sergey",
+                "YREY",
+                "YRTE",
+                new DateTime(1996, 5, 18),
+                "35634",
+                "9692352355",
+                "adress1",
+                "A",
+                "a",
+                new DateTime(2018, 9, 1)
+                );
 
         Storage storage = new Storage(
                 Constants.serverName,
@@ -26,170 +42,287 @@ namespace militOfficeLibUnitTests
                 Constants.password
         );
 
-        private RecruitTerminal createRecruitTerminal(Boolean writeAccess, Boolean readAccess = true){
+        private RecruitTerminal omnipotentTerminal;
+
+        public RecruitTerminalTests()
+        {
+            omnipotentTerminal = CreateRecruitTerminal(true, true);
+        }
+
+        private RecruitTerminal CreateRecruitTerminal(Boolean writeAccess, Boolean readAccess = true){
             return new RecruitTerminal(storage, writeAccess, readAccess);
         }
 
-        private  void initDB(){
-            String query;
+        [TestInitialize]
+        public void InitDB(){
+            String query = String.Format("TRUNCATE TABLE {0}", tableName);
+            storage.Query(query);
+
             foreach(var recruit in recruits){
                 query = String.Format("INSERT INTO {0} VALUES(NULL,'{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}')",
                         tableName,
                         recruit.name,
                         recruit.surname,
                         recruit.patronymic,
-                        recruit.birthday,
+                        recruit.birthday.ToString("yyyy-MM-dd H:mm:ss"),
                         recruit.pasport,
                         recruit.phoneNumber,
                         recruit.address,
                         recruit.category,
                         recruit.conviction,
-                        recruit.postponement
+                        recruit.postponement.ToString("yyyy-MM-dd H:mm:ss")
                     );
                 storage.Query(query);
             }
         }
 
-        private void clearDB()
-        {
-            String query = String.Format("TRUNCATE TABLE {0}", tableName);
-            storage.Query(query);
-        }
-
-        
-
         //GetAll
         [TestMethod]
         public void GetAll_deleting()
         {
-            //initDB();
-            //RecruitTerminal terminal = createRecruitTerminal(true, true);
-            //terminal.DeleteById(0);
-            //terminal.DeleteById(1);
-            
+            RecruitTerminal recruitTerminal = CreateRecruitTerminal(true);
 
+            omnipotentTerminal.DeleteById(1);
+            omnipotentTerminal.DeleteById(2);
+
+            var result = (List<Recruit>)recruitTerminal.GetAll();
+            
+            Assert.IsFalse(result.Contains(recruits[0]));
+            Assert.IsFalse(result.Contains(recruits[1]));
+            Assert.IsTrue(result.Contains(recruits[2]));
         }
 
         [TestMethod]
         public void GetAll_adding()
         {
+            RecruitTerminal recruitTerminal = CreateRecruitTerminal(true);
+
+            omnipotentTerminal.Add(addingRecruit);
+            var result = (List<Recruit>)recruitTerminal.GetAll();
+
+            Assert.IsTrue(result.Contains(recruits[0]));
+            Assert.IsTrue(result.Contains(recruits[1]));
+            Assert.IsTrue(result.Contains(recruits[2]));
+            Assert.IsTrue(result.Contains(addingRecruit));
 
         }
 
         [TestMethod]
+        [ExpectedException(typeof(PermissionDeniedException))]
         public void GetAll_withoutPermission()
         {
-
+            RecruitTerminal recruitTerminal = CreateRecruitTerminal(true, false);
+            recruitTerminal.GetAll();
         }
 
         //GetByCategory
         [TestMethod]
         public void GetByCategory_deleting()
         {
+            RecruitTerminal recruitTerminal = CreateRecruitTerminal(true);
+            String category = "A";
 
+            omnipotentTerminal.DeleteById(1);
+            var result = (List<Recruit>)recruitTerminal.GetByCategory(category);
+
+            Assert.IsFalse(result.Contains(recruits[0]));
         }
 
         [TestMethod]
         public void GetByCategory_adding()
         {
+            RecruitTerminal recruitTerminal = CreateRecruitTerminal(true);
+
+            String category = "A";
+
+            addingRecruit.category = category;
+            omnipotentTerminal.Add(addingRecruit);
+            var result = (List<Recruit>)recruitTerminal.GetByCategory(category);
+
+            Assert.IsTrue(result.Contains(addingRecruit));
 
         }
-
+        
         [TestMethod]
+        [ExpectedException(typeof(PermissionDeniedException))]
         public void GetByCategory_withoutPermission()
         {
+            RecruitTerminal recruitTerminal = CreateRecruitTerminal(true, false);
+            recruitTerminal.GetByCategory("A");
 
         }
-
+        
         //GetByConviction
         [TestMethod]
         public void GetByConviction_deleting()
         {
+            RecruitTerminal recruitTerminal = CreateRecruitTerminal(true);
+            String conviction = "Нет";
 
+            omnipotentTerminal.DeleteById(1);
+            var result = (List<Recruit>)recruitTerminal.GetByConviction(conviction);
+
+            Assert.IsFalse(result.Contains(recruits[0]));
         }
 
         [TestMethod]
          public void GetByConviction_adding()
         {
+            RecruitTerminal recruitTerminal = CreateRecruitTerminal(true);
 
+            String conviction = "Нет";
+
+            addingRecruit.conviction = conviction;
+            omnipotentTerminal.Add(addingRecruit);
+            var result = (List<Recruit>)recruitTerminal.GetByConviction(conviction);
+          
+            Assert.IsTrue(result.Contains(addingRecruit));
         }
 
         [TestMethod]
+        [ExpectedException(typeof(PermissionDeniedException))]
         public void GetByConviction_withoutPermission()
         {
-
+            RecruitTerminal recruitTerminal = CreateRecruitTerminal(true, false);
+            recruitTerminal.GetByConviction("Нет");
         }
-
-        //GetByConviction
+        
+        //GetByPostponement
         [TestMethod]
         public void GetByPostponement_deleting()
         {
+            RecruitTerminal recruitTerminal = CreateRecruitTerminal(true);
+            DateTime postponement = new DateTime(2018, 8, 1);
 
+            omnipotentTerminal.DeleteById(1);
+            var result = (List<Recruit>)recruitTerminal.GetByPostponement(postponement);
+
+            Assert.IsFalse(result.Contains(recruits[0]));
         }
 
         [TestMethod]
         public void GetByPostponement_adding()
         {
+            RecruitTerminal recruitTerminal = CreateRecruitTerminal(true);
 
+            DateTime postponement = new DateTime(2018, 8, 1);
+
+            addingRecruit.postponement = postponement;
+            omnipotentTerminal.Add(addingRecruit);
+            var result = (List<Recruit>)recruitTerminal.GetByPostponement(postponement);
+
+            Assert.IsTrue(result.Contains(addingRecruit));
         }
 
         [TestMethod]
+        [ExpectedException(typeof(PermissionDeniedException))]
         public void GetByPostponement_withoutPermission()
         {
-
+            RecruitTerminal recruitTerminal = CreateRecruitTerminal(true, false);
+            DateTime postponement = new DateTime(2018, 8, 1);
+         
+            recruitTerminal.GetByPostponement(postponement);
         }
 
         //GetById
         [TestMethod]
         public void GetById_deleting()
         {
+            RecruitTerminal recruitTerminal = CreateRecruitTerminal(true);
+            int id = 1;
 
+            omnipotentTerminal.DeleteById(id);
+            var result = recruitTerminal.GetById(id);
+
+            Assert.IsNull(result);
         }
 
         [TestMethod]
         public void GetById_adding()
         {
+            RecruitTerminal recruitTerminal = CreateRecruitTerminal(true);
 
+            int id = 4;
+         
+            omnipotentTerminal.Add(addingRecruit);
+            var result = recruitTerminal.GetById(id);
+
+            Assert.AreEqual(addingRecruit, result);
         }
 
         [TestMethod]
+        [ExpectedException(typeof(PermissionDeniedException))]
         public void GetById_withoutPermission()
         {
-
+            RecruitTerminal recruitTerminal = CreateRecruitTerminal(true, false);
+            recruitTerminal.GetById(1);
         }
 
+        
         //Add
+        [TestMethod]
         public void Add_withPermission()
         {
+            RecruitTerminal recruitTerminal = CreateRecruitTerminal(true);
+         
+            recruitTerminal.Add(addingRecruit);
+            var result = (List<Recruit>)omnipotentTerminal.GetAll();
 
+            Assert.IsTrue(result.Contains(addingRecruit));
         }
-
+         
+        [TestMethod]
+        [ExpectedException(typeof(PermissionDeniedException))]
         public void Add__withoutPermission()
         {
+            
+            RecruitTerminal recruitTerminal = CreateRecruitTerminal(false);
+            recruitTerminal.Add(addingRecruit);
 
         }
 
 
         //Update
+        [TestMethod]
         public void Update_withPermission()
         {
+            RecruitTerminal recruitTerminal = CreateRecruitTerminal(true);
+            addingRecruit.id = 1;
+            recruitTerminal.Update(addingRecruit);
 
+            var result = (List<Recruit>)omnipotentTerminal.GetAll();
+            var rec = result.Find(recruit => recruit.id == 1 );
+
+            Assert.AreEqual(addingRecruit, rec);
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(PermissionDeniedException))]
         public void Update__withoutPermission()
         {
-
+            RecruitTerminal recruitTerminal = CreateRecruitTerminal(false);
+            recruitTerminal.Update(addingRecruit);
         }
 
         //DeleteById
+        [TestMethod]
         public void DeleteById_withPermission()
         {
+            RecruitTerminal recruitTerminal = CreateRecruitTerminal(true);
+            recruitTerminal.DeleteById(1);
 
+            var result = (List<Recruit>)omnipotentTerminal.GetAll();
+
+            Assert.IsFalse(result.Contains(recruits[0]));
         }
-
+        
+        [TestMethod]
+        [ExpectedException(typeof(PermissionDeniedException))]
         public void DeleteById__withoutPermission()
         {
+            RecruitTerminal recruitTerminal = CreateRecruitTerminal(false);
 
+            recruitTerminal.DeleteById(1);
         }
     }
 }

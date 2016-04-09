@@ -9,10 +9,12 @@ namespace militOfficeLib
     internal class Constants
     {
         public static string serverName = "localhost";
-        public static string userName = "root";
-        public static string dbName = "militDB";
-        public static string port = "19190";
-        public static string password = "root";
+        public static string userName = "";
+        public static string dbName = "militdb";
+        public static string port = "3306";
+        public static string password = "";
+
+        public static string recruitsTable = "recruits";
 
         public static Permissions AdminCommands = Permissions.ordersRead |
                                     Permissions.ordersWrite |

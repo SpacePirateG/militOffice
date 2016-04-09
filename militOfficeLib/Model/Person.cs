@@ -16,6 +16,8 @@ namespace militOfficeLib
         public String pasport;
         public String phoneNumber;
         public String address;
+
+        public Person() { }
         public Person(
             Int32 id,
             String name,

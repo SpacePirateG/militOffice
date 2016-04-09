@@ -5,12 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using militOfficeLib;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NLog;
+
 namespace militOfficeLib.Tests
 {
     [TestClass()]
     public class MilitTerminalTests
     {
-
+        private static Logger logger = LogManager.GetCurrentClassLogger();
        // проверка на выброшенное исключение
         private void AuthenticationExceptionThrown()
         {
@@ -22,8 +24,11 @@ namespace militOfficeLib.Tests
             }
             catch (System.Security.Authentication.AuthenticationException)
             {
+                logger.Info("Тест на выброшенное исключения пройден успешно");
                 return;
             }
+
+            logger.Error("Тест на выброшенное исключения не пройден");
             Assert.Fail("No exception was thrown.");     
         }
 

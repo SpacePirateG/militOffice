@@ -1,7 +1,7 @@
 DROP DATABASE IF EXISTS test;
 CREATE DATABASE IF NOT EXISTS test;
 use test;
-source C:/Projects/militOffice/militbd.sql;
+source militbd.sql;
 
 
 INSERT INTO `recruits` VALUES (1, 'Сергей', 'Морозов', 'Иванов', '1998-1-1', 'выдан в махачкале', '8-800-555-35-35', 'ул пушкина', 'А', 'нет', 'нет');

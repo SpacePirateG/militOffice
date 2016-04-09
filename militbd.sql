@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `recruits` (
   `address` text NOT NULL,
   `category` text NOT NULL,
   `conviction` text NOT NULL,
-  `postponement` text NOT NULL,
+  `postponement` date NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;

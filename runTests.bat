@@ -1,0 +1,1 @@
+mstest /testcontainer:./militOfficeLibUnitTests/bin/Debug/militOfficeLibUnitTests.dll > result.txt

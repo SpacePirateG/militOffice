@@ -17,9 +17,9 @@ namespace militOfficeUI
     /// <summary>
     /// Логика взаимодействия для UpdateRecruitWindow.xaml
     /// </summary>
-    public partial class UpdateRecruitWindow : Window
+    public partial class UpdatingRecruitWindow : Window
     {
-        public UpdateRecruitWindow()
+        public UpdatingRecruitWindow()
         {
             InitializeComponent();
         }

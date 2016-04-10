@@ -60,10 +60,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="UpdatingWindow.xaml.cs">
-      <DependentUpon>UpdatingWindow.xaml</DependentUpon>
+    <Compile Include="AddingRecruitWindow.xaml.cs">
+      <DependentUpon>AddingRecruitWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="AddingWindow.xaml">
+    <Compile Include="UpdatingRecruitWindow.xaml.cs">
+      <DependentUpon>UpdatingRecruitWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="AddingRecruitWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -75,9 +78,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="AddingWindow.xaml.cs">
-      <DependentUpon>AddingWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -89,7 +89,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="UpdatingWindow.xaml">
+    <Page Include="UpdatingRecruitWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

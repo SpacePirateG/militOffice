@@ -65,6 +65,9 @@ namespace militOfficeLib
         {
             if (readAccess)
             {
+                if (category == null)
+                    throw new ArgumentException();
+
                 String query = String.Format("SELECT * FROM {0} WHERE category = '{1}' ",
                     Constants.recruitsTable,
                     category
@@ -80,6 +83,9 @@ namespace militOfficeLib
         {
             if (readAccess)
             {
+                if (conviction == null)
+                    throw new ArgumentException();
+
                 String query = String.Format("SELECT * FROM {0} WHERE conviction = '{1}' ",
                     Constants.recruitsTable,
                     conviction
@@ -129,6 +135,9 @@ namespace militOfficeLib
         {
             if (writeAccess)
             {
+                if (recruit == null)
+                    throw new ArgumentException();
+
                 String query = String.Format("INSERT INTO {0} VALUES(NULL,'{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}')",
                         Constants.recruitsTable,
                         recruit.name,
@@ -152,6 +161,9 @@ namespace militOfficeLib
         {
             if (writeAccess)
             {
+                if (recruit == null)
+                    throw new ArgumentException();
+
                 String query = String.Format(@"UPDATE {0} SET 
                             name = '{1}',
                             surname = '{2}',

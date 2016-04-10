@@ -12,6 +12,7 @@ namespace militOfficeLib
         public Int32 recruitId;
         public DateTime date;
         public String cause;
+        public Order() { }
         public Order(
             Int32 id,
             Int32 recruitId,

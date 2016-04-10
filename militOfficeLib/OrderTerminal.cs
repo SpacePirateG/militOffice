@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
+using System.Reflection;
 
 namespace militOfficeLib
 {
@@ -20,12 +21,41 @@ namespace militOfficeLib
             this.storage = storage;
         }
 
+        private IEnumerable<Order> DataTableToIEnumerable(DataTable table)
+        {
+            try
+            {
+                List<Order> orders = new List<Order>();
+
+                foreach (var row in table.AsEnumerable())
+                {
+                    Order order = new Order();
+
+                    foreach (var field in order.GetType().GetFields())
+                    {
+                        FieldInfo fieldInfo = order.GetType().GetField(field.Name);
+                        fieldInfo.SetValue(order, Convert.ChangeType(row[field.Name], fieldInfo.FieldType));
+                    }
+
+                    orders.Add(order);
+                }
+
+                return orders;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         public IEnumerable<Order> GetAll()
         {
             if (readAccess)
             {
-                DataTable dataTable = storage.Query("");
-                return null;
+                String query = "SELECT * FROM orders";
+                DataTable dataTable = storage.Query(query);
+
+                return DataTableToIEnumerable(dataTable);
             }
             else
                 throw new PermissionDeniedException("today is not your day");
@@ -35,8 +65,10 @@ namespace militOfficeLib
         {
             if (readAccess)
             {
-                DataTable dataTable = storage.Query("");
-                return null;
+                String query = String.Format("SELECT * FROM WHERE date = '{0}'", date);
+                DataTable dataTable = storage.Query(query);
+
+                return DataTableToIEnumerable(dataTable);
             }
             else
                 throw new PermissionDeniedException("today is not your day");
@@ -57,7 +89,11 @@ namespace militOfficeLib
         {
             if (writeAccess)
             {
-                DataTable dataTable = storage.Query("");
+                String query = String.Format(
+                    "INSERT INTO orders VALUES ('{0}','{1})",
+                    order.date, order.cause);
+
+               storage.Query(query);
             }
             else
                 throw new PermissionDeniedException("today is not your day");
@@ -67,7 +103,11 @@ namespace militOfficeLib
         {
             if (writeAccess)
             {
-                storage.Query("");
+                String query = String.Format(
+                    "UPDATE `orders` SET `id`= {0},`date`='{1}',`cause`= '{2}'",
+                    order.id, order.date, order.cause);
+
+                storage.Query(query);
             }
             else
                 throw new PermissionDeniedException("today is not your day");
@@ -77,7 +117,9 @@ namespace militOfficeLib
         {
             if (writeAccess)
             {
-                storage.Query("");
+                String query = String.Format(
+                    "DELETE FROM `orders` WHERE 1", id);
+                storage.Query(query);
             }
             else
                 throw new PermissionDeniedException("today is not your day");

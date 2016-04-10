@@ -8,10 +8,10 @@ namespace militOfficeLib
 {
     public class Order
     {
-        public Int32 id;
-        public Int32 recruitId;
-        public DateTime date;
-        public String cause;
+        public Int32 id { get; set; }
+        public Int32 recruitId { get; set; }
+        public DateTime date { get; set; }
+        public String cause { get; set; }
         public Order() { }
         public Order(
             Int32 id,

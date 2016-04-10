@@ -32,12 +32,12 @@ namespace militOfficeLib
 
     public class User
     {
-        public String login;
-        public String password;
-        public String name;
-        public String surname;
-        public String patronymic;
-        public UserTypes type;
+        public String login { get; set; }
+        public String password { get; set; }
+        public String name { get; set; }
+        public String surname { get; set; }
+        public String patronymic { get; set; }
+        public UserTypes type { get; set; }
         public User() { }
         public User(
         String login,

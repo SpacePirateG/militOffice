@@ -8,14 +8,14 @@ namespace militOfficeLib
 {
     public class Person
     {
-        public Int32 id;
-        public String name;
-        public String surname;
-        public String patronymic;
-        public DateTime birthday;
-        public String pasport;
-        public String phoneNumber;
-        public String address;
+        public Int32 id { get; set; }
+        public String name { get; set; }
+        public String surname { get; set; }
+        public String patronymic { get; set; }
+        public DateTime birthday { get; set; }
+        public String pasport { get; set; }
+        public String phoneNumber { get; set; }
+        public String address { get; set; }
 
         public Person() { }
         public Person(

@@ -23,6 +23,33 @@ namespace militOfficeLib
             this.storage = storage;
         }
 
+        private IEnumerable<User> DataTableToIEnumerable(DataTable table)
+        {
+            try
+            {
+                List<User> users = new List<User>();
+
+                foreach (var row in table.AsEnumerable())
+                {
+                    User user = new User();
+
+                    foreach (var property in user.GetType().GetProperties())
+                    {
+                        PropertyInfo propertyInfo = user.GetType().GetProperty(property.Name);
+                        propertyInfo.SetValue(user, Convert.ChangeType(row[property.Name], propertyInfo.PropertyType));
+                    }
+
+                    users.Add(user);
+                }
+
+                return users;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         public virtual User GetBylogin(string login)
         {
             if (readAccess)
@@ -33,13 +60,13 @@ namespace militOfficeLib
 
                 foreach (var row in dataTable.AsEnumerable())
                 {
-                    foreach (var field in user.GetType().GetFields())
+                    foreach (var property in user.GetType().GetProperties())
                     {
-                        FieldInfo fieldInfo = user.GetType().GetField(field.Name);
-                        if (fieldInfo.FieldType.Name == "UserTypes")
-                            fieldInfo.SetValue(user, Enum.ToObject(new UserTypes().GetType(), 1));
+                        PropertyInfo propertyInfo = user.GetType().GetProperty(property.Name);
+                        if (propertyInfo.PropertyType.Name == "UserTypes")
+                            propertyInfo.SetValue(user, Enum.ToObject(new UserTypes().GetType(), row[propertyInfo.Name]));
                         else
-                            fieldInfo.SetValue(user, Convert.ChangeType(row[field.Name], fieldInfo.FieldType));
+                            propertyInfo.SetValue(user, Convert.ChangeType(row[propertyInfo.Name], propertyInfo.PropertyType));
                     }
 
                     return user;
@@ -55,7 +82,7 @@ namespace militOfficeLib
         {
             if (readAccess)
             {
-                DataTable dataTable = storage.Query("");
+                DataTable dataTable = storage.Query("SELECT * FROM users");
                 return null;
             }
             else

@@ -31,10 +31,10 @@ namespace militOfficeLib
                 {
                     Order order = new Order();
 
-                    foreach (var field in order.GetType().GetFields())
+                    foreach (var property in order.GetType().GetFields())
                     {
-                        FieldInfo fieldInfo = order.GetType().GetField(field.Name);
-                        fieldInfo.SetValue(order, Convert.ChangeType(row[field.Name], fieldInfo.FieldType));
+                        PropertyInfo propertyInfo = order.GetType().GetProperty(property.Name);
+                        propertyInfo.SetValue(order, Convert.ChangeType(row[property.Name], propertyInfo.PropertyType));
                     }
 
                     orders.Add(order);

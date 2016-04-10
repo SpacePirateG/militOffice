@@ -24,10 +24,10 @@ namespace militOfficeLib
                 {
                     Recruit recruit = new Recruit();
 
-                    foreach (var field in recruit.GetType().GetFields())
+                    foreach (var property in recruit.GetType().GetProperties())
                     {
-                            FieldInfo fieldInfo = recruit.GetType().GetField(field.Name);
-                            fieldInfo.SetValue(recruit, Convert.ChangeType(row[field.Name], fieldInfo.FieldType));
+                        PropertyInfo propertyInfo = recruit.GetType().GetProperty(property.Name);
+                        propertyInfo.SetValue(recruit, Convert.ChangeType(row[property.Name], propertyInfo.PropertyType));
                     }
 
                     recruits.Add(recruit);

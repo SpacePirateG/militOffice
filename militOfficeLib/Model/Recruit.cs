@@ -8,9 +8,9 @@ namespace militOfficeLib
 {
     public class Recruit : Person
     {
-        public String category;
-        public String conviction;
-        public DateTime postponement;
+        public String category {get; set;}
+        public String conviction { get; set; }
+        public DateTime postponement { get; set; }
 
         public Recruit():base() { }
         public Recruit(

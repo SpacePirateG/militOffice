@@ -66,7 +66,8 @@ CREATE TABLE IF NOT EXISTS `users` (
   `name` text NOT NULL,
   `surname` text NOT NULL,
   `patronymic` text NOT NULL,
-  `permission` text NOT NULL
+  `permission` text NOT NULL,
+  `type` Int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

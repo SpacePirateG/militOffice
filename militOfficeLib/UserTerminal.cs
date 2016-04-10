@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
+using System.Reflection;
 
 namespace militOfficeLib
 {
@@ -26,7 +27,24 @@ namespace militOfficeLib
         {
             if (readAccess)
             {
-                DataTable dataTable = storage.Query("");
+                String query = String.Format("SELECT * FROM users WHERE login = '{0}'", login);
+                DataTable dataTable = storage.Query(query);
+                User user = new User();
+
+                foreach (var row in dataTable.AsEnumerable())
+                {
+                    foreach (var field in user.GetType().GetFields())
+                    {
+                        FieldInfo fieldInfo = user.GetType().GetField(field.Name);
+                        if (fieldInfo.FieldType.Name == "UserTypes")
+                            fieldInfo.SetValue(user, Enum.ToObject(new UserTypes().GetType(), 1));
+                        else
+                            fieldInfo.SetValue(user, Convert.ChangeType(row[field.Name], fieldInfo.FieldType));
+                    }
+
+                    return user;
+                }
+
                 return null;
             }
             else

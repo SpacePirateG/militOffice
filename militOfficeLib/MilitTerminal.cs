@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.CompilerServices;
 
+
 [assembly: InternalsVisibleTo("militOfficeLibUnitTests")]
+[assembly: InternalsVisibleTo("IGTests")]
 
 namespace militOfficeLib
 {
@@ -16,6 +18,7 @@ namespace militOfficeLib
         private OrderTerminal orderTerminal;
         private RecruitTerminal recruitTerminal;
         private UserTerminal userTerminal;
+        private UserTerminal authTerminal;
 
         public MilitTerminal()
         {
@@ -26,6 +29,8 @@ namespace militOfficeLib
                 Constants.port,
                 Constants.password
             );
+
+            authTerminal = new UserTerminal(storage, false, true);
         }
 
         public MilitTerminal(UserTerminal userTerminal)
@@ -77,7 +82,7 @@ namespace militOfficeLib
 
         public void Authentication(string login, string password)
         {
-            User userByLogin = UserTerminal.GetBylogin(login);
+            User userByLogin = authTerminal.GetBylogin(login);
 
             if (userByLogin == null || password != userByLogin.password)
                 throw new System.Security.Authentication.AuthenticationException("retry authentication");

@@ -111,7 +111,12 @@ namespace militOfficeUI
 
         private void DeleteRecruitButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Recruit recruit = RecruitsTable.SelectedItem as Recruit;
+            if (recruit != null)
+            {
+                recruitTerminal.DeleteById(recruit.id);
+                CreateRecruitsTable();
+            }
         }
 
         private void AddOrderButton_Click(object sender, RoutedEventArgs e)

@@ -93,13 +93,13 @@ namespace militOfficeUI
 
         private void AddRecruitButton_Click(object sender, RoutedEventArgs e)
         {
-            new AddingWindow().Show();
+            new AddingRecruitWindow().Show();
         }
 
         private void UpdateRecruitButton_Click(object sender, RoutedEventArgs e)
         {
 
-            new UpdatingWindow().Show();
+            new UpdatingRecruitWindow().Show();
         }
 
         private void DeleteRecruitButton_Click(object sender, RoutedEventArgs e)
@@ -109,12 +109,12 @@ namespace militOfficeUI
 
         private void AddOrderButton_Click(object sender, RoutedEventArgs e)
         {
-            new AddingWindow().Show();
+            //new AddingWindow().Show();
         }
 
         private void UpdateOrderButton_Click(object sender, RoutedEventArgs e)
         {
-            new UpdatingWindow().Show();
+            //new UpdatingWindow().Show();
         }
 
         private void DeleteOrderButton_Click(object sender, RoutedEventArgs e)
@@ -124,12 +124,12 @@ namespace militOfficeUI
 
         private void AddUserButton_Click(object sender, RoutedEventArgs e)
         {
-            new AddingWindow().Show();
+            //new AddingWindow().Show();
         }
 
         private void UpdateUserButton_Click(object sender, RoutedEventArgs e)
         {
-            new UpdatingWindow().Show();
+            //new UpdatingWindow().Show();
         }
 
         private void DeleteUserButton_Click(object sender, RoutedEventArgs e)

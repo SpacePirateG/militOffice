@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace militOfficeUI
 {
     /// <summary>
-    /// Логика взаимодействия для UpdatingWindow.xaml
+    /// Логика взаимодействия для UpdateRecruitWindow.xaml
     /// </summary>
-    public partial class UpdatingWindow : Window
+    public partial class UpdateRecruitWindow : Window
     {
-        public UpdatingWindow()
+        public UpdateRecruitWindow()
         {
             InitializeComponent();
         }

@@ -1,7 +1,7 @@
-﻿<Window x:Class="militOfficeUI.AddingWindow"
+﻿<Window x:Class="militOfficeUI.AddingRecruitWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="AddingWindow" Height="408.985" Width="321.094">
+        Title="AddingRecruitWindow" Height="408.985" Width="321.094">
     <Grid>
         <Button Content="Добавить" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="100" FontSize="16"/>
 

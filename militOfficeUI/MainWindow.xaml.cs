@@ -79,6 +79,7 @@ namespace militOfficeUI
 
         public void CreateRecruitsTable()
         {
+            RecruitsTable.Items.Clear();
             IEnumerable<Recruit> recruits = recruitTerminal.GetAll();
             foreach(var recruit in recruits){
                 RecruitsTable.Items.Add(recruit);

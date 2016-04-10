@@ -21,9 +21,10 @@ namespace militOfficeUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        private RecruitTerminal recruitTerminal;
-        private UserTerminal userTerminal;
-        private OrderTerminal orderTerminal;
+        public RecruitTerminal recruitTerminal;
+        public UserTerminal userTerminal;
+        public OrderTerminal orderTerminal;
+
         private Permissions availablePermissions;
 
         public MainWindow(MilitTerminal militTerminal)
@@ -76,30 +77,36 @@ namespace militOfficeUI
             
         }
 
-        private void CreateRecruitsTable()
+        public void CreateRecruitsTable()
         {
-            RecruitsTable.ItemsSource = recruitTerminal.GetAll();
+            IEnumerable<Recruit> recruits = recruitTerminal.GetAll();
+            foreach(var recruit in recruits){
+                RecruitsTable.Items.Add(recruit);
+            }
         }
 
-        private void CreateOrdersTable()
+        public void CreateOrdersTable()
         {
             OrdersTable.ItemsSource = orderTerminal.GetAll();
         }
 
-        private void CreateUserTable()
+        public void CreateUserTable()
         {
             UsersTable.ItemsSource = userTerminal.GetAll();
         }
 
         private void AddRecruitButton_Click(object sender, RoutedEventArgs e)
         {
-            new AddingRecruitWindow().Show();
+            new AddingRecruitWindow(this).Show();
         }
 
         private void UpdateRecruitButton_Click(object sender, RoutedEventArgs e)
         {
-
-            new UpdatingRecruitWindow().Show();
+            Recruit recruit = RecruitsTable.SelectedItem as Recruit;
+            if (recruit != null)
+            {
+                new UpdatingRecruitWindow(this, recruit).Show();
+            }
         }
 
         private void DeleteRecruitButton_Click(object sender, RoutedEventArgs e)

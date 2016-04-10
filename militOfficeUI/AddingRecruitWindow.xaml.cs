@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using militOfficeLib;
 
 namespace militOfficeUI
 {
@@ -19,9 +20,31 @@ namespace militOfficeUI
     /// </summary>
     public partial class AddingRecruitWindow : Window
     {
-        public AddingRecruitWindow()
+        MainWindow mainWindow;
+        public AddingRecruitWindow(MainWindow mainWindow)
         {
             InitializeComponent();
+            this.mainWindow = mainWindow;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Recruit recruit = new Recruit(
+                  0,
+                  Name.Text,
+                  Surname.Text,
+                  Patronymic.Text,
+                  Birthday.SelectedDate.Value,
+                  Pasport.Text,
+                  PhoneNumber.Text,
+                  Address.Text,
+                  Category.Text,
+                  Conviction.Text,
+                  Postponement.SelectedDate.Value
+                );
+
+            mainWindow.recruitTerminal.Add(recruit);
+            mainWindow.CreateRecruitsTable();
         }
     }
 }

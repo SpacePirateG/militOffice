@@ -6,7 +6,7 @@ namespace militOfficeLib.Tests
     public class MilitTerminalTests
     {
         [TestMethod()]
-        public void AuthenticationTest_Success()
+        public void AuthenticationTest_ExistsUser()
         {
             var militTerminal = new MilitTerminal();
             militTerminal.Authentication("admin", "admin");
@@ -15,7 +15,7 @@ namespace militOfficeLib.Tests
 
         [TestMethod()]
         [ExpectedException(typeof(System.Security.Authentication.AuthenticationException))]
-        public void AuthenticationTest_Fail()
+        public void AuthenticationTest_NotExistsUser()
         {
             var militTerminal = new MilitTerminal();
             militTerminal.Authentication("admin", "admin1");

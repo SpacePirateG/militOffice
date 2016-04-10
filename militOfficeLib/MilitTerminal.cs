@@ -35,7 +35,7 @@ namespace militOfficeLib
 
         public MilitTerminal(UserTerminal userTerminal)
         {
-            this.userTerminal = userTerminal;
+            this.authTerminal = userTerminal;
         }
 
         public OrderTerminal OrderTerminal

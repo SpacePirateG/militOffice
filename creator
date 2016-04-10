@@ -18,5 +18,5 @@ INSERT INTO `orders` VALUES (3, '2017-2-2', 'явиться туда то туда то');
 
 
 
-INSERT INTO `users`  VALUES ('admin', 'admin', 'Админ', 'Админ', 'Админов', 'admin');
-INSERT INTO `users`  VALUES ('user', 'user', 'Пользователь', 'Пользователь', 'Пользователев', 'user');
+INSERT INTO `users`  VALUES ('admin', 'admin', 'Админ', 'Админ', 'Админов', 'admin', '4');
+INSERT INTO `users`  VALUES ('user', 'user', 'Пользователь', 'Пользователь', 'Пользователев', 'user', '3');

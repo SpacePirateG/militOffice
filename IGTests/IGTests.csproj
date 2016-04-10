@@ -56,8 +56,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="MilitTerminalTest.cs" />
     <Compile Include="RecruitTerminalTests.cs" />
-    <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Choose>

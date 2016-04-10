@@ -33,11 +33,12 @@ namespace militOfficeLib
     public class User
     {
         public String login;
-        internal String password;
+        public String password;
         public String name;
         public String surname;
         public String patronymic;
         public UserTypes type;
+        public User() { }
         public User(
         String login,
         String password,

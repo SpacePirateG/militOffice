@@ -36,7 +36,10 @@ namespace militOfficeLib
                     foreach (var property in user.GetType().GetProperties())
                     {
                         PropertyInfo propertyInfo = user.GetType().GetProperty(property.Name);
-                        propertyInfo.SetValue(user, Convert.ChangeType(row[property.Name], propertyInfo.PropertyType));
+                        if (propertyInfo.PropertyType.Name == "UserTypes")
+                            propertyInfo.SetValue(user, Enum.ToObject(new UserTypes().GetType(), row[propertyInfo.Name]));
+                        else
+                            propertyInfo.SetValue(user, Convert.ChangeType(row[propertyInfo.Name], propertyInfo.PropertyType));
                     }
 
                     users.Add(user);
@@ -56,23 +59,8 @@ namespace militOfficeLib
             {
                 String query = String.Format("SELECT * FROM users WHERE login = '{0}'", login);
                 DataTable dataTable = storage.Query(query);
-                User user = new User();
-
-                foreach (var row in dataTable.AsEnumerable())
-                {
-                    foreach (var property in user.GetType().GetProperties())
-                    {
-                        PropertyInfo propertyInfo = user.GetType().GetProperty(property.Name);
-                        if (propertyInfo.PropertyType.Name == "UserTypes")
-                            propertyInfo.SetValue(user, Enum.ToObject(new UserTypes().GetType(), row[propertyInfo.Name]));
-                        else
-                            propertyInfo.SetValue(user, Convert.ChangeType(row[propertyInfo.Name], propertyInfo.PropertyType));
-                    }
-
-                    return user;
-                }
-
-                return null;
+                User user = DataTableToIEnumerable(dataTable).ToArray()[0];
+                return user;
             }
             else
                 throw new PermissionDeniedException("today is not your day");
@@ -83,7 +71,8 @@ namespace militOfficeLib
             if (readAccess)
             {
                 DataTable dataTable = storage.Query("SELECT * FROM users");
-                return null;
+                var users = DataTableToIEnumerable(dataTable);
+                return users;
             }
             else
                 throw new PermissionDeniedException("today is not your day");

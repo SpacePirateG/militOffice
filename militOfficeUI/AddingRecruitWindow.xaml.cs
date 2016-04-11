@@ -26,52 +26,31 @@ namespace militOfficeUI
         MainWindow mainWindow;
         public AddingRecruitWindow(MainWindow mainWindow)
         {
+            logger.Info("Открытие окна добавления");
             InitializeComponent();
             this.mainWindow = mainWindow;
-            this.Button_Click(this, null); //for tests
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        public void Button_Click(object sender, RoutedEventArgs e)
         {
-            logger.Info("Добавление призывника");
 
-            //for tests
-            /*
             Recruit recruit = new Recruit(
                   0,
                   Name.Text,
                   Surname.Text,
                   Patronymic.Text,
-                  Birthday.SelectedDate.Value,
+                  Birthday.SelectedDate.Value.Date,
                   Pasport.Text,
                   PhoneNumber.Text,
                   Address.Text,
                   Category.Text,
                   Conviction.Text,
-                  Postponement.SelectedDate.Value
+                  Postponement.SelectedDate.Value.Date
                 );
-            */
-      //      mainWindow.recruitTerminal.Add(recruit);
-            mainWindow.recruitTerminal.Add(GetTestRecruit()); //for tests
+            logger.Info("Запрос на добавление призывника");
+            logger.Info("Добавление призывника");
+            mainWindow.recruitTerminal.Add(recruit);
             mainWindow.CreateRecruitsTable();
-        }
-
-        //for tests
-        public static Recruit GetTestRecruit()
-        {
-            return new Recruit(
-                  666,
-                  "test",
-                  "test",
-                  "test",
-                  new DateTime(1),
-                  "test",
-                  "test",
-                  "test",
-                  "test",
-                  "test",
-                  new DateTime(1)
-                );
         }
     }
 }

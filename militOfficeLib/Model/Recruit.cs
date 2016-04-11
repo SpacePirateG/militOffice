@@ -77,13 +77,13 @@ namespace militOfficeLib
             return name == p.name &&
                 surname == p.surname &&
                 patronymic == p.patronymic &&
-                birthday == p.birthday &&
+                birthday.Date == p.birthday.Date &&
                 pasport == p.pasport &&
                 phoneNumber == p.phoneNumber &&
                 address == p.address &&
                 category == p.category &&
                 conviction == p.conviction &&
-                postponement == p.postponement;
+                postponement.Date == p.postponement.Date;
         }
 
         public override int GetHashCode()

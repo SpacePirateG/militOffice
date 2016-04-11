@@ -27,11 +27,11 @@ namespace militOfficeUI
         private MainWindow mainWindow;
         public UpdatingRecruitWindow(MainWindow mainWindow, Recruit recruit)
         {
+            logger.Info("Открытие окна изменения");
             InitializeComponent();
             this.recruit = recruit;
             this.mainWindow = mainWindow;
             ConfigureFields();
-            UpdateButton_Click(this, null); //for tests
         }
 
         public void ConfigureFields()
@@ -49,45 +49,26 @@ namespace militOfficeUI
 
         }
 
-        private void UpdateButton_Click(object sender, RoutedEventArgs e)
+        public void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
-            logger.Info("Обновление призывника");
 
             Recruit updatedRecruit = new Recruit(
                   recruit.id,
                   Name.Text,
                   Surname.Text,
                   Patronymic.Text,
-                  Birthday.SelectedDate.Value,
+                  Birthday.SelectedDate.Value.Date,
                   Pasport.Text,
                   PhoneNumber.Text,
                   Address.Text,
                   Category.Text,
                   Conviction.Text,
-                  Postponement.SelectedDate.Value
+                  Postponement.SelectedDate.Value.Date
                 );
-
-           // mainWindow.recruitTerminal.Update(updatedRecruit);
-            mainWindow.recruitTerminal.Update(GetTestRecruit()); //for tests
+            logger.Info("Запрос на обновление призывника");
+            logger.Info("Обновление призывника");
+            mainWindow.recruitTerminal.Update(updatedRecruit);
             mainWindow.CreateRecruitsTable();
-        }
-
-        //for tests
-        public static Recruit GetTestRecruit()
-        {
-            return new Recruit(
-                  666,
-                  "testUpdated",
-                  "testUpdated",
-                  "testUpdated",
-                  new DateTime(1),
-                  "testUpdated",
-                  "testUpdated",
-                  "testUpdated",
-                  "testUpdated",
-                  "testUpdated",
-                  new DateTime(1)
-                );
         }
     }
 }

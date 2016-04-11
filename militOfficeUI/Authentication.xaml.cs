@@ -43,7 +43,6 @@ namespace militOfficeUI
         public void enterValidUser(){
             LoginField.Text = "admin";
             PasswordField.Password = "admin";
-            if(mainWindow == null)
         }
 
         public void enterInvalidUser()
@@ -58,7 +57,8 @@ namespace militOfficeUI
 			try
 			{
 				militTerminal.Authentication(LoginField.Text, PasswordField.Password);
-				mainWindow = new MainWindow(militTerminal).Show();
+				mainWindow = new MainWindow(militTerminal);
+                mainWindow.Show();
 				this.Close();
 			}
 			catch (AuthenticationException)

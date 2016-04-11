@@ -21,10 +21,36 @@ namespace militOfficeUI
 	/// </summary>
 	public partial class Authentication : Window
 	{
+        public MainWindow mainWindow;
 		public Authentication()
 		{
 			InitializeComponent();
+            validAuthentificationTest();
 		}
+
+        public void validAuthentificationTest()
+        {
+            enterValidUser();
+            Button_Click(this, null);
+        }
+
+        public void invalidAuthentificationTest()
+        {
+            enterInvalidUser();
+            Button_Click(this, null);
+        }
+
+        public void enterValidUser(){
+            LoginField.Text = "admin";
+            PasswordField.Password = "admin";
+            if(mainWindow == null)
+        }
+
+        public void enterInvalidUser()
+        {
+            LoginField.Text = "user";
+            PasswordField.Password = "ewrgorjtiowe";
+        }
 
 		private void Button_Click(object sender, RoutedEventArgs e)
 		{
@@ -32,7 +58,7 @@ namespace militOfficeUI
 			try
 			{
 				militTerminal.Authentication(LoginField.Text, PasswordField.Password);
-				new MainWindow(militTerminal).Show();
+				mainWindow = new MainWindow(militTerminal).Show();
 				this.Close();
 			}
 			catch (AuthenticationException)

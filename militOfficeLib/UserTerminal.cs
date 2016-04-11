@@ -57,10 +57,18 @@ namespace militOfficeLib
         {
             if (readAccess)
             {
-                String query = String.Format("SELECT * FROM users WHERE login = '{0}'", login);
-                DataTable dataTable = storage.Query(query);
-                User user = DataTableToIEnumerable(dataTable).ToArray()[0];
-                return user;
+                try
+                {
+                    String query = String.Format("SELECT * FROM users WHERE login = '{0}'", login);
+                    DataTable dataTable = storage.Query(query);
+                    User user = DataTableToIEnumerable(dataTable).ToArray()[0];
+                    return user;
+                }
+                catch (Exception ex)
+                {
+                    
+                }
+                return null;    
             }
             else
                 throw new PermissionDeniedException("today is not your day");

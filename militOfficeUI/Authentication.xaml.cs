@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using militOfficeLib;
 using System.Security.Authentication;
+using NLog;
 
 namespace militOfficeUI
 {
@@ -21,6 +22,8 @@ namespace militOfficeUI
 	/// </summary>
 	public partial class Authentication : Window
 	{
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+
         public MainWindow mainWindow;
 		public Authentication()
 		{
@@ -60,10 +63,12 @@ namespace militOfficeUI
 				mainWindow = new MainWindow(militTerminal);
                 mainWindow.Show();
 				this.Close();
+                logger.Info("Вход произведен");
 			}
 			catch (AuthenticationException)
 			{
 				MessageBox.Show("Ошибка: Логин или пароль введены неверно");
+                logger.Error("Логин или пароль введены неверно");
 			}
 
 				

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using militOfficeLib;
+using NLog;
 
 namespace militOfficeUI
 {
@@ -21,6 +22,8 @@ namespace militOfficeUI
     /// </summary>
     public partial class MainWindow : Window
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+
         public RecruitTerminal recruitTerminal;
         public UserTerminal userTerminal;
         public OrderTerminal orderTerminal;
@@ -55,6 +58,8 @@ namespace militOfficeUI
                     AddRecruitButton.Visibility = System.Windows.Visibility.Collapsed;
                     DeleteRecruitButton.Visibility = System.Windows.Visibility.Collapsed;
                 }
+
+                logger.Info("Получение всех призывников");
             }
             else
                 tabControl.Items.Remove(RecruitsItem);
@@ -74,7 +79,7 @@ namespace militOfficeUI
                 tabControl.Items.Remove(OrdersItem);
 
             //if (availableCommands.)
-            
+            TestRecruitsFunctional();
         }
 
         public void CreateRecruitsTable()
@@ -103,7 +108,8 @@ namespace militOfficeUI
 
         private void UpdateRecruitButton_Click(object sender, RoutedEventArgs e)
         {
-            Recruit recruit = RecruitsTable.SelectedItem as Recruit;
+          //  Recruit recruit = RecruitsTable.SelectedItem as Recruit;
+            Recruit recruit = AddingRecruitWindow.GetTestRecruit();
             if (recruit != null)
             {
                 new UpdatingRecruitWindow(this, recruit).Show();
@@ -112,9 +118,12 @@ namespace militOfficeUI
 
         private void DeleteRecruitButton_Click(object sender, RoutedEventArgs e)
         {
+          //  RecruitsTable.SelectedItem = UpdatingRecruitWindow.GetTestRecruit();
             Recruit recruit = RecruitsTable.SelectedItem as Recruit;
             if (recruit != null)
             {
+                logger.Info("удаление призывника");
+
                 recruitTerminal.DeleteById(recruit.id);
                 CreateRecruitsTable();
             }
@@ -148,6 +157,15 @@ namespace militOfficeUI
         private void DeleteUserButton_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        //for tests
+        private void TestRecruitsFunctional()
+        {
+            AddRecruitButton_Click(this, null);
+            UpdateRecruitButton_Click(this, null);
+
+            DeleteRecruitButton_Click(this, null);
         }
     }
 }

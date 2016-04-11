@@ -50,8 +50,8 @@ namespace militOfficeUI
 
         public void enterInvalidUser()
         {
-            LoginField.Text = "user";
-            PasswordField.Password = "ewrgorjtiowe";
+            LoginField.Text = "admin1";
+            PasswordField.Password = "admin1";
         }
 
 		private void Button_Click(object sender, RoutedEventArgs e)
@@ -59,11 +59,12 @@ namespace militOfficeUI
 			MilitTerminal militTerminal = ((App)Application.Current).militTerminal;
 			try
 			{
+                logger.Info(String.Format("Логин={0}, Пароль", LoginField.Text, PasswordField.Password));
 				militTerminal.Authentication(LoginField.Text, PasswordField.Password);
+                logger.Info("Вход произведен");
 				mainWindow = new MainWindow(militTerminal);
                 mainWindow.Show();
-				this.Close();
-                logger.Info("Вход произведен");
+				this.Close();               
 			}
 			catch (AuthenticationException)
 			{

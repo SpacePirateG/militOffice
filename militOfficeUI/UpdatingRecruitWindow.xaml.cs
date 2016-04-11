@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using militOfficeLib;
+using NLog;
 
 namespace militOfficeUI
 {
@@ -20,6 +21,8 @@ namespace militOfficeUI
     /// </summary>
     public partial class UpdatingRecruitWindow : Window
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+
         private Recruit recruit;
         private MainWindow mainWindow;
         public UpdatingRecruitWindow(MainWindow mainWindow, Recruit recruit)
@@ -28,6 +31,7 @@ namespace militOfficeUI
             this.recruit = recruit;
             this.mainWindow = mainWindow;
             ConfigureFields();
+            UpdateButton_Click(this, null); //for tests
         }
 
         public void ConfigureFields()
@@ -47,6 +51,8 @@ namespace militOfficeUI
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
+            logger.Info("Обновление призывника");
+
             Recruit updatedRecruit = new Recruit(
                   recruit.id,
                   Name.Text,
@@ -61,8 +67,27 @@ namespace militOfficeUI
                   Postponement.SelectedDate.Value
                 );
 
-            mainWindow.recruitTerminal.Update(updatedRecruit);
+           // mainWindow.recruitTerminal.Update(updatedRecruit);
+            mainWindow.recruitTerminal.Update(GetTestRecruit()); //for tests
             mainWindow.CreateRecruitsTable();
+        }
+
+        //for tests
+        public static Recruit GetTestRecruit()
+        {
+            return new Recruit(
+                  666,
+                  "testUpdated",
+                  "testUpdated",
+                  "testUpdated",
+                  new DateTime(1),
+                  "testUpdated",
+                  "testUpdated",
+                  "testUpdated",
+                  "testUpdated",
+                  "testUpdated",
+                  new DateTime(1)
+                );
         }
     }
 }

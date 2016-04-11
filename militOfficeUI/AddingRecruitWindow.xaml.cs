@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using militOfficeLib;
+using NLog;
 
 namespace militOfficeUI
 {
@@ -20,15 +21,22 @@ namespace militOfficeUI
     /// </summary>
     public partial class AddingRecruitWindow : Window
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+
         MainWindow mainWindow;
         public AddingRecruitWindow(MainWindow mainWindow)
         {
             InitializeComponent();
             this.mainWindow = mainWindow;
+            this.Button_Click(this, null); //for tests
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            logger.Info("Добавление призывника");
+
+            //for tests
+            /*
             Recruit recruit = new Recruit(
                   0,
                   Name.Text,
@@ -42,9 +50,28 @@ namespace militOfficeUI
                   Conviction.Text,
                   Postponement.SelectedDate.Value
                 );
-
-            mainWindow.recruitTerminal.Add(recruit);
+            */
+      //      mainWindow.recruitTerminal.Add(recruit);
+            mainWindow.recruitTerminal.Add(GetTestRecruit()); //for tests
             mainWindow.CreateRecruitsTable();
+        }
+
+        //for tests
+        public static Recruit GetTestRecruit()
+        {
+            return new Recruit(
+                  666,
+                  "test",
+                  "test",
+                  "test",
+                  new DateTime(1),
+                  "test",
+                  "test",
+                  "test",
+                  "test",
+                  "test",
+                  new DateTime(1)
+                );
         }
     }
 }

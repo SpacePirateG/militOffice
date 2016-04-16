@@ -78,8 +78,17 @@ namespace militOfficeLib
         {
             if (readAccess)
             {
-                DataTable dataTable = storage.Query("");
-                return null;
+
+                String query = String.Format("SELECT * FROM {0} WHERE recruitId = '{1}' ",
+                    Constants.recruitsTable,//?????????????????????????????????????????????????????????????????????
+                    id
+                    );
+                DataTable dataTable = storage.Query(query);
+                var order = (List<Order>)DataTableToIEnumerable(dataTable);
+                if (order.Count == 0)
+                    return null;
+
+                return order[0];
             }
             else
                 throw new PermissionDeniedException("today is not your day");
@@ -89,6 +98,8 @@ namespace militOfficeLib
         {
             if (writeAccess)
             {
+                if (order == null)
+                    throw new ArgumentException();
                 String query = String.Format(
                     "INSERT INTO orders VALUES ('{0}','{1})",
                     order.date, order.cause);
@@ -103,6 +114,8 @@ namespace militOfficeLib
         {
             if (writeAccess)
             {
+                if (order == null)
+                    throw new ArgumentException();
                 String query = String.Format(
                     "UPDATE `orders` SET `id`= {0},`date`='{1}',`cause`= '{2}'",
                     order.id, order.date, order.cause);

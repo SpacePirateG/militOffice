@@ -1,0 +1,9 @@
+﻿DROP DATABASE IF EXISTS test;
+CREATE DATABASE IF NOT EXISTS test;
+use test;
+source test.sql;
+
+SET NAMES 'utf8';
+SET CHARACTER SET 'utf8';
+
+

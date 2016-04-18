@@ -68,18 +68,7 @@ namespace militOfficeLibUnitTests
             orderTerminal.GetAll();
         }
 
-        // GetByCategory
-
-        /*[TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void GetAllByDate_null()
-        {
-            OrderTerminal orderTerminal = new OrderTerminal(storage, true, true);
-
-            var result = orderTerminal.GetAllByDate(new DateTime());
-
-        }
-         */
+        //GetAllByDate
         [TestMethod]
         public void GetAllByDate_validQuery()
         {

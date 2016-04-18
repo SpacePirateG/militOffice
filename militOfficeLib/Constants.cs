@@ -15,6 +15,7 @@ namespace militOfficeLib
         public static string password = "";
 
         public static string recruitsTable = "recruits";
+        public static string ordersTable = "recruits";
 
         public static Permissions AdminCommands = Permissions.ordersRead |
                                     Permissions.ordersWrite |

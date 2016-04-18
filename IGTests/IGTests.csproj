@@ -57,6 +57,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="MilitTerminalTest.cs" />
+    <Compile Include="OrderTerminalTests.cs" />
     <Compile Include="RecruitTerminalTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

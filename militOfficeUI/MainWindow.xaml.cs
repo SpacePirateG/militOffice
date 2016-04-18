@@ -82,7 +82,7 @@ namespace militOfficeUI
                 tabControl.Items.Remove(OrdersItem);
 
             //if (availableCommands.)
-            RunTests();
+       //     RunTests();
         }
 
         public void CreateRecruitsTable()
@@ -137,12 +137,12 @@ namespace militOfficeUI
 
         private void AddOrderButton_Click(object sender, RoutedEventArgs e)
         {
-            //new AddingWindow().Show();
+            new AddingOrderWindow(this).Show();
         }
 
         private void UpdateOrderButton_Click(object sender, RoutedEventArgs e)
         {
-            //new UpdatingWindow().Show();
+            new UpdateOrdersWindow(this).Show();
         }
 
         private void DeleteOrderButton_Click(object sender, RoutedEventArgs e)
@@ -362,7 +362,7 @@ namespace militOfficeUI
             if (!RecruitsTable.Items.Contains(delitingRecruit))
                 logger.Info("РЕЗУЛЬТАТ ТЕСТА: УСПЕХ. Успешное удаление призывника");
             else
-                logger.Error("РЕЗУЛЬТАТ ТЕСТА: ПРОВАЛ. Призывник удален");
+                logger.Error("РЕЗУЛЬТАТ ТЕСТА: ПРОВАЛ. Призывник не удален");
         }
 
         private void TestInvalidDeleteRecruit()

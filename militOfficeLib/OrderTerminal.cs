@@ -31,7 +31,7 @@ namespace militOfficeLib
                 {
                     Order order = new Order();
 
-                    foreach (var property in order.GetType().GetFields())
+                    foreach (var property in order.GetType().GetProperties())
                     {
                         PropertyInfo propertyInfo = order.GetType().GetProperty(property.Name);
                         propertyInfo.SetValue(order, Convert.ChangeType(row[property.Name], propertyInfo.PropertyType));
@@ -79,10 +79,9 @@ namespace militOfficeLib
             if (readAccess)
             {
 
-                String query = String.Format("SELECT * FROM {0} WHERE recruitId = '{1}' ",
-                    Constants.recruitsTable,//?????????????????????????????????????????????????????????????????????
-                    id
-                    );
+                String query = String.Format("SELECT * FROM `orders` WHERE recruitId = '{1}' ",
+                    Constants.ordersTable, id);
+
                 DataTable dataTable = storage.Query(query);
                 var order = (List<Order>)DataTableToIEnumerable(dataTable);
                 if (order.Count == 0)
@@ -101,8 +100,8 @@ namespace militOfficeLib
                 if (order == null)
                     throw new ArgumentException();
                 String query = String.Format(
-                    "INSERT INTO orders VALUES ('{0}','{1})",
-                    order.date, order.cause);
+                    "INSERT INTO orders (date, cause, recruitId) VALUES ('{0}','{1}', '{2}')",
+                    order.date, order.cause, order.recruitId);
 
                storage.Query(query);
             }
@@ -117,7 +116,7 @@ namespace militOfficeLib
                 if (order == null)
                     throw new ArgumentException();
                 String query = String.Format(
-                    "UPDATE `orders` SET `id`= {0},`date`='{1}',`cause`= '{2}'",
+                    "UPDATE orders SET id= {0},date='{1}',cause= '{2}'",
                     order.id, order.date, order.cause);
 
                 storage.Query(query);
@@ -131,7 +130,7 @@ namespace militOfficeLib
             if (writeAccess)
             {
                 String query = String.Format(
-                    "DELETE FROM `orders` WHERE 1", id);
+                    "DELETE FROM orders WHERE id={1}", id);
                 storage.Query(query);
             }
             else
